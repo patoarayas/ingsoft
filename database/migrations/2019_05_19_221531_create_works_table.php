@@ -15,7 +15,7 @@ class CreateWorksTable extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             //campos tabla works
-            $table->integer('id')->index()->notnullable()->autoincrement();
+            $table->increments('id')->index();
             $table->string('title',128)->notnullable();
             $table->enum('status',['INGRESADA','ACEPTADA','FINALIZADA','ANULADA'])->default('INGRESADA');
             $table->date('start_date')->notnullable();
@@ -28,7 +28,7 @@ class CreateWorksTable extends Migration
             $table->date('certification_date')->notnull();
             $table->double('qualification')->unsigned()->notnullable();
             $table->string('curricular_code')->notnullable();
-            $table->integer('type_id')->notnullable(); //esta es mi clave foranea
+            $table->integer('type_id')->unsigned(); //esta es mi clave foranea
             
             $table->timestamps();
 

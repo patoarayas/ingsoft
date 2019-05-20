@@ -11,6 +11,6 @@ class WorksTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Work::class,20)->create();
     }
 }

@@ -15,13 +15,13 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             //campos tabla students
-            $table->integer('id')->index()->notnullable()->autoincrement();
+            $table->increments('id');
             $table->string('rut',128)->notnullable();
             $table->string('name',128)->notnullable();
             $table->string('career',128)->notnullable(); //carrera
             $table->string('email',128)->notnullable();
             $table->integer('phone');
-            $table->integer('work_id')->notnullable();
+            $table->integer('work_id')->unsigned();
             
             $table->timestamps();
 

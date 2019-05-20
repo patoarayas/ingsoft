@@ -11,6 +11,6 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Type::class,3)->create();
     }
 }

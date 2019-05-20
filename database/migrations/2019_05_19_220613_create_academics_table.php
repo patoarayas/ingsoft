@@ -15,7 +15,7 @@ class CreateAcademicsTable extends Migration
     {
         Schema::create('academics', function (Blueprint $table) {
             //los 4 son atributos del modelo R
-            $table->integer('id')->index()->notnullable()->autoincrement();
+            $table->increments('id');
             $table->string('rut',128)->unique()->notnullable();
             $table->string('name',128)->unique()->notnullable();
             $table->string('email',128)->unique()->notnullable();

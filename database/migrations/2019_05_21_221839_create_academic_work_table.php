@@ -15,9 +15,9 @@ class CreateAcademicWorkTable extends Migration
     {
         Schema::create('academic_work', function (Blueprint $table) {
             //Campos tabla academic_work
-            $table->integer('id')->index()->notnullable()->autoincrement();
-            $table->integer('work_id')->notnullable();
-            $table->integer('academic_id')->notnullable();
+            $table->increments('id');
+            $table->integer('work_id')->unsigned();
+            $table->integer('academic_id')->unsigned();
 
             $table->timestamps();
 
