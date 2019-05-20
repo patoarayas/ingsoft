@@ -19,7 +19,8 @@ class CreateAcademicsTable extends Migration
             $table->string('rut',128)->unique()->notnullable();
             $table->string('name',128)->unique()->notnullable();
             $table->string('email',128)->unique()->notnullable();
-            
+
+
             $table->timestamps();
         });
     }
