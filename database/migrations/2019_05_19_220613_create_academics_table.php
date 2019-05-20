@@ -14,12 +14,11 @@ class CreateAcademicsTable extends Migration
     public function up()
     {
         Schema::create('academics', function (Blueprint $table) {
-            $table->increments('id');
-
-            //los 3 son atributos del modelo R
-            $table->string('rut',128)->unique();
-            $table->string('name',128)->unique();
-            $table->string('email',128)->unique();
+            //los 4 son atributos del modelo R
+            $table->integer('id')->index()->notnullable()->autoincrement();
+            $table->string('rut',128)->unique()->notnullable();
+            $table->string('name',128)->unique()->notnullable();
+            $table->string('email',128)->unique()->notnullable();
             
             $table->timestamps();
         });
