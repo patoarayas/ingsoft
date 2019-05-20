@@ -12,5 +12,13 @@ class AcademicsTableSeeder extends Seeder
     public function run()
     {
         factory(App\Academic::class,20)->create();
+        factory(App\Academic::class,20)->create()->each(function(App\Academic $academic){
+            $academic->works()->attach([
+                rand(1,5),
+                rand(6,14),
+                rand(15,20),
+            ]);
+        });
+        //crea los seeders y relaciones , ademas de rellenar datos para versiones de prueba
     }
 }

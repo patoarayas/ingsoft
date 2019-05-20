@@ -11,10 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+       //usaremos este diseño de genrar los seeders, para respetar las relaciones entre tablas
         $this->call(UsersTableSeeder::class);
-        $this->call(AcademicsTableSeeder::class);
         $this->call(TypesTableSeeder::class);
         $this->call(WorksTableSeeder::class);
         $this->call(StudentsTableSeeder::class);
+        $this->call(AcademicsTableSeeder::class);
+        
     }
 }
