@@ -14,8 +14,16 @@ class CreateAcademicWorkTable extends Migration
     public function up()
     {
         Schema::create('academic_work', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            //Campos tabla academic_work
+            $table->integer('id')->index()->notnullable()->autoincrement();
+            $table->integer('work_id')->notnullable();
+            $table->integer('academic_id')->notnullable();
+
             $table->timestamps();
+
+            //Relacionamiento
+            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('academic_id')->references('id')->on('academics')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
