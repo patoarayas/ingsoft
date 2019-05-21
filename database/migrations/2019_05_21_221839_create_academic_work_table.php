@@ -18,6 +18,7 @@ class CreateAcademicWorkTable extends Migration
             $table->increments('id');
             $table->integer('work_id')->unsigned();
             $table->integer('academic_id')->unsigned();
+            $table->string('academic_charge',128)->default('ACADEMICO');//si no tiene default genera problemas
 
             $table->timestamps();
 
