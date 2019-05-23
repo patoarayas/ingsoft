@@ -14,10 +14,10 @@ class UsersTableSeeder extends Seeder
         factory(App\User::class,19)->create();
         //creo mi usuario admin 
         App\User::create([
-            'name'=>'Alvaro Lucas Castillo Calabacero',
-            'email'=>'alvaro.castillo@alumnos.ucn.cl',
-            'password'=>bcrypt('cacadeburr0'),
-            'type_user'=>'root',
+            'name'=>'secretaria',
+            'email'=>'sectretaria@ucn.cl',
+            'password'=>bcrypt('secretaria'),
+            'type_user'=>'secretaria',
           
         ]);
     }
