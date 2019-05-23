@@ -19,7 +19,9 @@ Ya habiendo hecho un **fork** de el proyecto y clonado el mismo en el PC se pued
 
 1. Desarrollar de a una funcionalidad (No ir haciendo pequeños cambios a todo el proyecto, enfocarse en una cosa a la vez), esto para poder tener un mejor seguimiento del desarrollo y hacer mas sencillo el arreglo de un error de producirse.
 
-2. Antes de empezar a trabajar en una funcionalidad hacer **fetch** para sincronizar el repositorio a la ultima versión.
+2. Antes de empezar a trabajar en una funcionalidad hacer **fetch** y luego **merge** para sincronizar el repositorio a la ultima versión.
+    * Desde la terminal `git fetch upstream` y  `git merge upstream/master`
+    
 3. Hacer commit cada vez que agrege un cambio importante, en el mensaje del commit hacer una breve descripcion de los cambios.
 4. En  culaquier momento del desarrollo hacer **push** para que se guarden los commit en tu repositorio en **GitHub** 
 5. Cuando finalizes la funcionalidad avisar para que el resto pueda revisarla asi preparar el **Pull Request** para añadir los cambios en el repositorio de producción.
