@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         //creo mi usuario admin 
         App\User::create([
             'name'=>'secretaria',
-            'email'=>'sectretaria@ucn.cl',
+            'email'=>'secretaria@ucn.cl',
             'password'=>bcrypt('secretaria'),
             'type_user'=>'secretaria',
           
