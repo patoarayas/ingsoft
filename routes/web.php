@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web/login'); //llamado a la plantilla principal, login de la carpeta web
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

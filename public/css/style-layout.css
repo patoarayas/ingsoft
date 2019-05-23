@@ -1,0 +1,49 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#container{
+    width: 1366px;
+    height: 657px;
+}
+
+#header{
+    background: rgb(35,65,91);
+    height: 155px;
+}
+
+#footer{
+    background: rgb(35,65,91);
+    height: 40px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    position: fixed;
+}
+#login-container{
+    background: white;
+    height: 462px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login-box{
+    height: 75%;
+    width: 37%;
+    border-radius: 0.5em;
+    border-style: solid;
+    border-color: rgb(182, 236, 248);
+
+   
+}
+
+#ucn-logo { 
+    position: absolute;
+    float: left;
+    left: 18px;
+    top: 19px;
+    height: 90px;
+    width: 388px;
+}
