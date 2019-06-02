@@ -17,8 +17,7 @@ class CreateStudentsTable extends Migration
             //campos tabla students
             $table->increments('id');
             $table->string('rut',9)->unique();
-            $table->string('name',128);
-            //TODO: Crear tabla carrera
+            $table->string('name',128);            
             $table->string('email',128);
             $table->string('phone')->nullable();
             $table->integer('work_id')->unsigned();

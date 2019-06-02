@@ -12,13 +12,13 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(App\User::class,19)->create();
-        //creo mi usuario admin 
+        //creo mi usuario admin
         App\User::create([
             'name'=>'secretaria',
             'email'=>'secretaria@ucn.cl',
             'password'=>bcrypt('secretaria'),
-            'type_user'=>'secretaria',
-          
+            'role'=>'secretaria',
+
         ]);
     }
 }
