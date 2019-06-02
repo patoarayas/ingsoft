@@ -20,3 +20,7 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//admin
+Route::resource('types','Admin\TypeController');

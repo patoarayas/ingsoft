@@ -75,14 +75,43 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+
+        @if(Session('info')) <!-- Esto genera la aceptacion e informa que se elimino correctamente, todo el if-->
+
+            <div class="container text-center">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="alert alert-success">
+                            {{Session('info')}}
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        @endif
+
+
+        @if(count($errors))
+        <div class="container ">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @yield('content')
+            
         </main>
-
-
-<footer class="footer">
-    <div class="container-fluid text-light">Ingeniería de Software</div>
-</footer>
-
+        
 
     </body>
+
+    
 </html>
