@@ -6,12 +6,13 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
+                <a href ="{{route('home')}}"class="btn btn-primary btn-sm float-left">Volver</a>
                     TIPOS DE ACTIVIDAD DE TITULACIÓN
-                    <a href ="{{route('types.create')}}"class="btn btn-primary btn-sm float-right">CREAR TIPO DE ACTIVIDAD</a>
+                    <a href ="{{route('types.create' )}}"class="btn btn-primary btn-sm float-right">CREAR TIPO DE ACTIVIDAD</a>
                 </div>
                 
                 <div class ="card-body text-center">
-                    <table class = " table table-striped table-hover" >
+                    <table class = "table table-striped table-hover" >
                         <thead>
                             
                             <tr>
@@ -44,6 +45,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $types->render() }}
                 </div>
             </div>
         </div>
