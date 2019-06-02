@@ -16,13 +16,13 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             //campos tabla students
             $table->increments('id');
-            $table->string('rut',128)->notnullable();
-            $table->string('name',128)->notnullable();
-            $table->string('career',128)->notnullable(); //carrera
-            $table->string('email',128)->notnullable();
-            $table->integer('phone');
+            $table->string('rut',9)->unique();
+            $table->string('name',128);
+            //TODO: Crear tabla carrera
+            $table->string('email',128);
+            $table->string('phone')->nullable();
             $table->integer('work_id')->unsigned();
-            
+
             $table->timestamps();
 
             //relacionamiento con tabla work

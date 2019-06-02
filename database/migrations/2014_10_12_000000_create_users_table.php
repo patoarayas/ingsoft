@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
 
             //campo para saber que tipo de usuario esta ingresando
-            $table->string("type_user",128)->notnullable()->default();
-           //$table->rememberToken();
+            $table->enum('role', ['SECRETARIA','TITULACION','VINCULACION','ACADEMICO'])->default('ACADEMICO');
+            $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
