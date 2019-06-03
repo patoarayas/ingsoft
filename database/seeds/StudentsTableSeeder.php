@@ -11,9 +11,12 @@ class StudentsTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
+            Rellena la tabla STUDENTS con 20 elementos segun el Factory
+         */
         factory(App\Student::class,20)->create()->each(function(App\Student $student){
             $student->work();
         });
-        //crea los seeders y relaciones , ademas de rellenar datos para versiones de prueba
+        
     }
 }

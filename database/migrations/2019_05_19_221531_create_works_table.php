@@ -14,25 +14,27 @@ class CreateWorksTable extends Migration
     public function up()
     {
         Schema::create('works', function (Blueprint $table) {
-            //campos tabla works
+
             $table->increments('id')->index();
-            $table->string('title',128)->notnullable();
+            $table->string('title',255);
             $table->enum('status',['INGRESADA','ACEPTADA','FINALIZADA','ANULADA'])->default('INGRESADA');
-            $table->date('start_date')->notnullable();
-            $table->date('finish_date')->notnullable();            
-            $table->string('name_ext_org',128);
-            $table->string('tutor_ext_org',128);
-            $table->integer('students_number')->notnullable();
-            $table->integer('year_reg')->notnullable();//puede ser year en vez de interger pero se maneja mejor como int
-            $table->integer('semester_reg')->notnullable(); //va a ser 1 o 2 
-            $table->date('certification_date')->notnull();
-            $table->double('qualification')->unsigned()->notnullable();
-            $table->string('curricular_code')->notnullable();
-            $table->integer('type_id')->unsigned(); //esta es mi clave foranea
-            
+            $table->date('start_date');
+            $table->date('finish_date');
+            $table->string('name_ext_org',128)->nullable();
+            $table->string('tutor_ext_org',128)->nullable();
+            $table->integer('cant_students');
+            $table->integer('year_reg');
+            $table->enum('semester_reg', ['PRIMER','SEGUNDO']);
+            $table->date('graduation_date')->nullable();
+            $table->double('grade')->unsigned()->nullable();
+            $table->string('curricular_code')->nullable();
+
+            // FK relacion con tabla TYPES
+            $table->integer('type_id')->unsigned();
+
             $table->timestamps();
 
-            //relacionamiento de clave foranea;
+            // Relacionamiento con tabla TYPES
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
         });
     }

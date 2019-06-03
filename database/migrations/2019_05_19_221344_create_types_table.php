@@ -14,12 +14,12 @@ class CreateTypesTable extends Migration
     public function up()
     {
         Schema::create('types', function (Blueprint $table) {
-            //aqui creamos los 5 campos de la tabla
+            
             $table->increments('id');
-            $table->string('activity_name',128)->unique()->notnullable();
-            $table->string('students_number',128)->notnullable();
-            $table->integer('duration')->unsigned()->notnullable();
-            $table->string('req_external_org',128)->notnullable();
+            $table->string('activity_name',128)->unique();
+            $table->integer('max_students')->unsigned();
+            $table->integer('duration')->unsigned();
+            $table->boolean('req_external_org');
 
             $table->timestamps();
         });

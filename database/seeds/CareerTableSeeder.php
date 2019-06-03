@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TypesTableSeeder extends Seeder
+class CareerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,8 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
         /*
-            Rellena la tabla TYPES con 3 elementos segun el Factory
+            Rellena la tabla CAREER con 22 carrers segun el Factory
          */
-        factory(App\Type::class,3)->create();
+        factory(App\Career::class,22)->create();
     }
 }

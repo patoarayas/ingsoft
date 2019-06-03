@@ -11,6 +11,10 @@ class AcademicsTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
+        Rellena la taba ACADEMICS con 20 academicos de prueba y los relaciona con
+        3 trabajos, usando el esquema dado en el Factory
+        */
         factory(App\Academic::class,20)->create();
         factory(App\Academic::class,20)->create()->each(function(App\Academic $academic){
             $academic->works()->attach([
@@ -19,6 +23,6 @@ class AcademicsTableSeeder extends Seeder
                 rand(15,20),
             ]);
         });
-        //crea los seeders y relaciones , ademas de rellenar datos para versiones de prueba
+
     }
 }

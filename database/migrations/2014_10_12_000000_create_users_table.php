@@ -18,10 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-
-            //campo para saber que tipo de usuario esta ingresando
-            $table->string("type_user",128)->notnullable()->default();
-           //$table->rememberToken();
+            //Campo que contiene el ROL del usuario, toma ACADEMICO por default
+            $table->enum('role', ['SECRETARIA','TITULACION','VINCULACION','ACADEMICO'])->default('ACADEMICO');
+            $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
