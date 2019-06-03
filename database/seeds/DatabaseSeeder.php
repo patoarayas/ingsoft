@@ -11,7 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       //usaremos este diseño de genrar los seeders, para respetar las relaciones entre tablas
+        /*
+            Declara el orden de los llamados a los seeders
+         */
         $this->call(UsersTableSeeder::class);
         $this->call(TypesTableSeeder::class);
         $this->call(WorksTableSeeder::class);

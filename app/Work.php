@@ -13,21 +13,21 @@ class Work extends Model
                            'qualification','curricular_code'];
 
     /**
-     * un trabajo pertenece a muchos estudiantes
+     * Un trabajo pertenece a muchos estudiantes
      */
     public function Students(){
         return $this->hasMany(Student::class);
     }
 
     /**
-     * un trabajo pertenece a muchos estudiantes
+     * Un trabajo pertenece a muchos estudiantes
      */
     public function types(){
         return $this->belongsTo(Type::class);
     }
 
     /**
-     *  un trabajo pertenece a muchos academicos
+     *  Un trabajo pertenece a muchos academicos
      */
     public function academics(){
         return $this->belongsToMany(Academic::class);

@@ -11,7 +11,7 @@ class Career extends Model
         'career'
     ];
     /**
-     * un trabajo pertenece a muchos estudiantes
+     * Una carrera tiene muchos estudiantes
      */
     public function students(){
         return $this->hasMany(Student::class);

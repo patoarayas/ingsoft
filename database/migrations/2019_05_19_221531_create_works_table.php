@@ -14,7 +14,7 @@ class CreateWorksTable extends Migration
     public function up()
     {
         Schema::create('works', function (Blueprint $table) {
-            //campos tabla works
+
             $table->increments('id')->index();
             $table->string('title',255);
             $table->enum('status',['INGRESADA','ACEPTADA','FINALIZADA','ANULADA'])->default('INGRESADA');
@@ -24,15 +24,17 @@ class CreateWorksTable extends Migration
             $table->string('tutor_ext_org',128)->nullable();
             $table->integer('cant_students');
             $table->integer('year_reg');
-            $table->enum('semester_reg', ['PRIMER','SEGUNDO']); //va a ser 1 o 2
+            $table->enum('semester_reg', ['PRIMER','SEGUNDO']);
             $table->date('graduation_date')->nullable();
             $table->double('grade')->unsigned()->nullable();
             $table->string('curricular_code')->nullable();
-            $table->integer('type_id')->unsigned(); //esta es la clave foranea
+
+            // FK relacion con tabla TYPES
+            $table->integer('type_id')->unsigned();
 
             $table->timestamps();
 
-            //relacionamiento de clave foranea;
+            // Relacionamiento con tabla TYPES
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
         });
     }

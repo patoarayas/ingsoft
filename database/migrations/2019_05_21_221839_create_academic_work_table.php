@@ -14,15 +14,17 @@ class CreateAcademicWorkTable extends Migration
     public function up()
     {
         Schema::create('academic_work', function (Blueprint $table) {
-            //Campos tabla academic_work
+
             $table->increments('id');
+            //FKs con tablas WORKS y ACADEMICS
             $table->integer('work_id')->unsigned();
             $table->integer('academic_id')->unsigned();
-            $table->string('academic_charge',128)->default('ACADEMICO');//si no tiene default genera problemas
+
+            $table->string('academic_role',128)->nullable();
 
             $table->timestamps();
 
-            //Relacionamiento
+            //Relacionamientos con tablas WORKS y ACADEMICS
             $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('academic_id')->references('id')->on('academics')->onDelete('cascade')->onUpdate('cascade');
         });

@@ -14,7 +14,7 @@ class CreateTypesTable extends Migration
     public function up()
     {
         Schema::create('types', function (Blueprint $table) {
-            //aqui creamos los 5 campos de la tabla
+            
             $table->increments('id');
             $table->string('activity_name',128)->unique();
             $table->integer('max_students')->unsigned();

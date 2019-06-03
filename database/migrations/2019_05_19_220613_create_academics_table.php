@@ -14,7 +14,7 @@ class CreateAcademicsTable extends Migration
     public function up()
     {
         Schema::create('academics', function (Blueprint $table) {
-            //los 4 son atributos del modelo R
+
             $table->increments('id');
             $table->string('rut',9)->unique();
             $table->string('name',128);

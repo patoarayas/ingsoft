@@ -1,4 +1,8 @@
 <?php
+/*
+    Factory para la tabla Career, declara el esquema para completar
+    los campos de cada fila para el Seeder
+ */
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 

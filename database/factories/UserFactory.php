@@ -1,5 +1,12 @@
 <?php
 
+/*
+    Factory para la tabla Users, declara el esquema para completar
+    los campos de cada fila para el Seeder
+    No rellena el campo role que por defualt toma el valor de ACADEMICO
+    el rol con menos privilegios posibles
+ */
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
 use Illuminate\Support\Str;
