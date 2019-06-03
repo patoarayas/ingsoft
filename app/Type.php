@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
 {
-    protected $fillable = ['activity_name','students_number','duration','req_external_org'];
+    protected $fillable = ['activity_name','max_students','duration','req_external_org'];
     /***
      * Un tipo de trabajo tiene muchos trabajos
      */
