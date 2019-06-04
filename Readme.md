@@ -5,7 +5,7 @@
 
 2. Clonar el repositorio en la carpeta htdocs de XAMPP, usualmente en `C:/xampp/htdocs`. Usando Github Desktop en la barra superior hacer click en la opción clonar repositorio. Se descargaran los archivos del repositorio en esa carpeta.
 
-3. Abrir el proyecto usando un editor de texto (Atom o Visual Studio Code) y renombrar el archivo `.env.example` a `.env`, este archivo guardara la configuración personal del proyecto.
+3. Abrir el proyecto usando un editor de texto (Atom o Visual Studio Code) y renombrar el archivo `.env.example` a `.env`, este archivo guardara la configuración personal del proyecto. (En el .env tambien debes colocar los datos para la conexion con la BD)
 
 4. En la terminal en la misma carpete del proyecto se debe ejecutar el comando `composer install` el cual descargará las dependecias necesarias.
 
@@ -23,6 +23,8 @@ Ya habiendo hecho un **fork** de el proyecto y clonado el mismo en el PC se pued
     * Desde la terminal `git fetch upstream` y  `git merge upstream/master`
     * Desde Github Desktop, hacer click en fetch origin en la barra superior y luego primero fijarse que
     la *current branch* sea **master**, hacer click en ese botón y seleccionar `Choose a branch to merge into master`, en el menú que se despliega seleccionar **usptream/master**, para terminar hacer push para que quede guardado en *origin* (el repositorio en github).
+
+Tambien se debe ejecutar `composer update` desde la terminal en la carpeta del proyecto, para instalar y actualizar dependencias que pudieran haber sido agregadas. Si los ultimos commit han generado cambios en la base de datos ademas se debe hacer `php artisan migrate:refresh -seed` para volver a generar las tablas.
 
 3. Hacer commit cada vez que se agrege un cambio importante, en el mensaje del commit hacer una breve descripcion de los cambios.
 4. En  culaquier momento del desarrollo hacer **push** para que se guarden los commit en tu repositorio en **GitHub**
