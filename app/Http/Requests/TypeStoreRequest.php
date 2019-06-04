@@ -25,7 +25,7 @@ class TypeStoreRequest extends FormRequest
     {
         return [
             'activity_name' =>'required',
-            'students_number'=>'required',
+            'max_students'=>'required',
             'duration'=>'required',
             'req_external_org'=>'required',
         ];

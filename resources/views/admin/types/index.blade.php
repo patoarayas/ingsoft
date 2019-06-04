@@ -6,11 +6,10 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
-                <a href ="{{route('home')}}"class="btn btn-primary btn-sm float-left">Volver</a>
+                <a href ="{{route('home')}}"class="btn btn-primary float-left">Volver</a>
                     TIPOS DE ACTIVIDAD DE TITULACIÓN
-                    <a href ="{{route('types.create' )}}"class="btn btn-primary btn-sm float-right">CREAR TIPO DE ACTIVIDAD</a>
+                    <a href ="{{route('types.create' )}}"class="btn btn-primary float-right">CREAR TIPO DE ACTIVIDAD</a>
                 </div>
-                
                 <div class ="card-body text-center">
                     <table class = "table table-striped table-hover" >
                         <thead>
@@ -26,19 +25,19 @@
                             <tr>
                                 <td>{{$type->id}}</td>
                                 <td>{{$type->activity_name}}</td>
-                                <td with="10px">
-                                <a href="{{route('types.show',$type->id)}}" class = "btn btn-primary btn-sm"> Mostrar </a>
+                                <td with="10px"><!-- Mostrar-->
+                                <a href="{{route('types.show',$type->id)}}" class = "btn btn-primary "> Mostrar </a>
                                 </td>
-
+                                <!-- Editar-->
                                 <td with="10px">
-                                <a href="{{route('types.edit',$type->id)}}" class = "btn btn-sm btn-primary"> Editar </a>
+                                <a href="{{route('types.edit',$type->id)}}" class = "btn btn-primary"> Editar </a>
                                 </td >
-
+                                <!-- Eliminar-->
                                 <td with ="10px">
                                     <form action="{{ route('types.destroy', $type->id) }}" method="POST">
                                         {{ method_field('delete') }}
                                         {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
