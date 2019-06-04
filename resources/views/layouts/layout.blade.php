@@ -18,20 +18,18 @@
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" type="text/css" href="css/app.css">
-        <link rel="stylesheet" type="text/css" href="css/style-layout.css">
-
+        <link href ="{{asset('css/app.css')}}" rel="stylesheet">
+        <link href ="{{asset('css/style-layout.css')}}" rel="stylesheet">
+        
     </head>
 
     <body>
-
-
 
         <nav class="navbar navbar-expand-md">
 
             <div class="container-fluid">
 
-                <img src="img/logo-ucn.png" id="ucn-logo" class="col-sm img-fluid float-left">
+                <img src="{{asset('img/logo-ucn.png')}}" id="ucn-logo" class="col-sm img-fluid float-left">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -75,14 +73,44 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+
         </main>
+        @if(Session('info')) <!-- Esto genera la aceptacion e informa que se elimino correctamente, todo el if-->
+
+        <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="alert alert-success">
+                  {{Session('info')}}
+                </div>
+              </div>
+            </div>
+        </div>
+        @endif
 
 
-<footer class="footer">
-    <div class="container-fluid text-light">Ingeniería de Software</div>
-</footer>
+        @if(count($errors))
+        <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach($errors->all() as $error)
+                      <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
 
+        @endif 
+        @yield('content')
+            
+        </main>
+        
 
     </body>
+
+    
 </html>

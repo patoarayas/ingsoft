@@ -12,9 +12,17 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
-
-                    Bienvenido a su menú
+                    @endif    
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Academicos</button>            
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Estudiantes</button> 
+                    <a href ="{{route('types.index')}}" class="btn btn-primary btn-lg btn-block">Registrar Tipo De Actividad De Titulación</a>            
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Autorizar Actividad De Titulación</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Inscribir Actividad De Titulación</button>    
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Anular Actividad De Titulación</button>        
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Inscripción Formal</button>        
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Examen de Título</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Consultar Actividades De Titulación Vigentes</button>
+                    
                 </div>
             </div>
         </div>
