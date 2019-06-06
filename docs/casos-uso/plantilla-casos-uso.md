@@ -3,7 +3,7 @@
 #### Actor(es):
 #### Propósito:
 #### Resumen:
-#### Tipo:
+#### Tipo: 
 #### Referencias cruzadas:
 
 #### Curso normal de los eventos
