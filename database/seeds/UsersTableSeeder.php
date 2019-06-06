@@ -29,5 +29,13 @@ class UsersTableSeeder extends Seeder
             'role'=>'secretaria',
 
         ]);
+        
+        //titulacion
+        App\User::create([
+            'name'=>'titulacion',
+            'email'=>'titulacion@ucn.cl',
+            'password'=>bcrypt('titulacion'),
+            'role'=>'titulacion',
+        ]);
     }
 }

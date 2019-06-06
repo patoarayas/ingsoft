@@ -24,7 +24,7 @@ class CreateWorksTable extends Migration
             $table->string('tutor_ext_org',128)->nullable();
             $table->integer('cant_students');
             $table->integer('year_reg');
-            $table->enum('semester_reg', ['PRIMER','SEGUNDO']);
+            $table->enum('semester_reg', ['PRIMERO','SEGUNDO']);
             $table->date('graduation_date')->nullable();
             $table->double('grade')->unsigned()->nullable();
             $table->string('curricular_code')->nullable();
