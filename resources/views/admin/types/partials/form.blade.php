@@ -9,7 +9,8 @@
     {{ Form::select('duration',[1 =>'1',2=>'2',3=>'3',4=>'4'],null,['class'=>'form-control','id'=>'duration']) }}
 
     {{ Form::label('req_external_org','Requiere Organización Externa')}}
-    {{ Form::select('req_external_org',[true => 'SI',false=>'NO'],null,['class'=>'form-control','id'=>'req_external_org']) }}
+    {{ Form::select('req_external_org',[1=>'SI',0=>'NO'],null,['class'=>'form-control','id'=>'req_external_org']) }}
+
 </div>
 
 <div class="form-group text-center">

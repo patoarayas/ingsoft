@@ -12,6 +12,8 @@ use App\Http\Requests\TypeUpdateRequest;
 class TypeController extends Controller
 {
 
+
+
     /* security verification */
     public function __construct(){
         $this->middleware('auth');
@@ -86,7 +88,7 @@ class TypeController extends Controller
     {
         $type=Type::find($id);
         $type->fill($request->all())->save();
-        return  redirect()->route('types.edit',$type->id)->with('info','Tipo de actividad actualizada correctamente');
+        return  redirect()->route('types.index',$type->id)->with('info','Tipo de actividad actualizada correctamente');
     }
 
     /**
