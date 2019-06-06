@@ -21,7 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('type', 'Web\PageController@type')->name('type');
-
+Route::get('work', 'Web\PageController@work')->name('work');
 
 //admin
 Route::resource('types','Admin\TypeController');
+Route::resource('works','Admin\WorkController');
