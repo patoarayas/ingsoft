@@ -16,8 +16,9 @@ Extienda a: CU010
 Incluido en: CU040
 
 #### Curso normal de los eventos
+
 | Accion del usuario | Respuesta del sistema |
-|------------------------------------------ |
+|--------------------|--------------------- |
 | 1. Este caso de uso comienza cuando el usuario desea  registrar un nuevo estudiante (Empieza en CU010 o CU040) ||
 | | 2. El sistema solicita el rut, nombre, carrera, correo electrónico y teléfono de contacto |
 | 3. El usuario ingresa los datos solicitados ||
