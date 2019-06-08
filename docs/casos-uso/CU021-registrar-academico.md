@@ -17,14 +17,14 @@ Incluido en: CU040, CU050
 
 #### Curso normal de los eventos
 
-
-| Accion del usuario | Respuesta del sistema |
-|------------------------------------------|
-| 1. Este caso de uso comienza cuando el usuario desea registrar un nuevo académico (Empieza en CU020, CU040, CU050) ||
+|Accion del usuario|Respuesta del sistema|
+|------------------|---------------------|
+| 1. Este caso de uso comienza cuando el usuario desea registrar un nuevo académico (Empieza en CU020, CU040, CU050) | |
 | | 2. El sistema solicita el rut, nombre y correo electrónico del académico |
-| 3. El usuario ingresa los datos solicitados ||
+| 3. El usuario ingresa los datos solicitados | |
 | | 4. El sistema valida los datos |
 | | 5.El sistema registra el nuevo estudiante e informa al usuario, también se generan las credenciales que le permitiran al académico acceder al sistema |
+
 
 | Curso Alternativo |
 |-----------------|
