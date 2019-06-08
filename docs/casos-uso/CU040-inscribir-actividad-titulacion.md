@@ -16,7 +16,7 @@ Incluye a: CU011, CU021
 
 
 |Accion del usuario | Respuesta del sistema|
-|------------------------------------------|
+|-------------------|----------------------|
 |1. Este caso de uso comienza cuando el usuario quiere inscribir una nueva actividad de titulación||
 ||2. El sistema solicita el titulo de la actividad, el tipo de actividad de las ya existentes, los estudiantes que realizarán la actividad, el académico que la guiará y la fecha de inicio y termino programada|
 |3. El usuario ingresa los datos solicitados||
