@@ -4,7 +4,7 @@
 
     * - [] **CU011**  *extends*: Registrar
     * - [] **CU012**  *extends*: Modificar
-    * - [] **CU012**  *extends*: Eliminar
+    * - [] **CU013**  *extends*: Eliminar
 
 - [] **CU020** (SEC/TIT) Administrar acádemicos
     * - [] **CU021** *extends*: Registrar
