@@ -11,7 +11,7 @@ Historias de usuario:
 
 
 |Accion del usuario | Respuesta del sistema|
-|------------------------------------------|
+|-------------------|----------------------|
 |||
 
 |Curso Alternativo|
