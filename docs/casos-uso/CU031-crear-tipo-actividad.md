@@ -17,7 +17,7 @@ Extiende a: CU030
 
 
 |Accion del usuario | Respuesta del sistema|
-|------------------------------------------|
+|-------------------|----------------------|
 | 1. Este caso de uso comienza cuando el usuario desea crea un nuevo tipo de actividad de titulación (Redirigido desde CU030)| |
 || 2. El sistema solicita el nombre de la actividad, la cantidad máxima de estudiantes permitidos, la duración y si requiere de una organización externa |
 |3. El usuario ingresa los datos solicitados||
