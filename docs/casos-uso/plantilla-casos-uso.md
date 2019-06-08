@@ -3,8 +3,9 @@
 #### Actor(es):
 #### Propósito:
 #### Resumen:
-#### Tipo: 
+#### Tipo:
 #### Referencias cruzadas:
+Historias de usuario:
 
 #### Curso normal de los eventos
 

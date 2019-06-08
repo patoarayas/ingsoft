@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         Se deben declarar los usuarios especiales que se usaran para probar
         la pagina
         */
-        
+
         // SECRETARIA
         App\User::create([
             'name'=>'secretaria',
@@ -29,8 +29,8 @@ class UsersTableSeeder extends Seeder
             'role'=>'secretaria',
 
         ]);
-        
-        //titulacion
+
+        // TITULACION
         App\User::create([
             'name'=>'titulacion',
             'email'=>'titulacion@ucn.cl',
