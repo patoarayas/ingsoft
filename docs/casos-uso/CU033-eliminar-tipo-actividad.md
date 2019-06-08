@@ -17,7 +17,7 @@ Extiende a: CU030
 
 
 |Accion del usuario | Respuesta del sistema|
-|------------------------------------------|
+|-------------------|----------------------|
 |1. Este caso de uso comienza cuando el usuario desea eliminar un tipo de actividad de las desplegadas en CU030||
 ||2. El sistema solicita al usuario que confirme la intención de eliminar el tipo de actividad|
 |3. El usuario confirma el deseo de eliminar el tipo de actividad||
