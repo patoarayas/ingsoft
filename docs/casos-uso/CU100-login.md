@@ -15,7 +15,7 @@ Opcional, Esencial
 
 
 |Accion del usuario | Respuesta del sistema|
-|------------------------------------------|
+|-------------------|----------------------|
 |1. Este caso de uso comienza al ingresar al sistema||
 ||2. El sistema solicita el correo y contraseña al usuario|
 |3. El usuario ingresa sus credenciales||
