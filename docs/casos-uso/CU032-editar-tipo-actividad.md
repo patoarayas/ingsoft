@@ -16,12 +16,13 @@ Extiende a:CU030
 
 
 |Accion del usuario | Respuesta del sistema|
-|------------------------------------------|
+|-------------------|----------------------|
 |1. Este caso de uso comienza cuando el usuario desea editar la informacion referente a un tipo de actividad ya registrada previamente (Desplegada previamente en CU030)||
 ||2. El sistema despliega la informacion relacionada al tipo de actividad de titulación|
 |3. El usuario ingresa la información de los campos que desea modificar||
 ||4. El sistema valida los datos.|
 ||5.El sistema registra el nuevo tipo de actividad|
+
 |Curso Alternativo|
 |-----------------|
 |4. Si existe algún dato invalido el sistema informa al usuario y le solicita rectificarlo|
