@@ -1,19 +1,26 @@
 @extends('layouts.layout')
 
 @section('content')
+<script type="text/javascript">
+function countStudens() {
+    var max = document.getElementById("typeSelected").htmlFor;
+    document.getElementById("labelCantStudents").innerHTML = max;
+
+}
+</script>
 <div class ="container">
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
                 <a href ="{{route('home')}}"class="btn btn-primary float-left">Volver</a>
-                    ACTIVIDAD DE TITULACIÓN
-                    <a href ="{{route('works.create' )}}"class="btn btn-primary float-right">CREAR ACTIVIDAD DE TITULACIÓN</a>
+                        ACTIVIDAD DE TITULACIÓN
+                    <a href ="{{route('works.create')}}"class="btn btn-primary float-right">CREAR ACTIVIDAD DE TITULACIÓN</a>
                 </div>
                 <div class ="card-body text-center">
                     <table class = "table table-striped table-hover" >
                         <thead>
-                            
+
                             <tr>
                                 <th with = "10px">ID</th>
                                 <th>Título Actidad De Titulación</th>
@@ -35,26 +42,23 @@
                                 @if($work->status == 'INGRESADA')
                                     <!-- Editar-->
                                     <td with="10px">
-                                    <a href="{{route('works.edit',$work->id)}}" class = "btn btn-primary"> Editar </a>
-                            
+                                      <a href="{{route('works.edit',$work->id)}}" class = "btn btn-primary"> Editar </a>
                                     </td >
 
-                                    @if(Auth()->user()->role == 'TITULACION')
-                                     <!-- Editar-->
+                                    @if(auth()->user()->role == 'TITULACION')
+                                     <!-- Autorizr-->
                                         <td with="10px">
-                                            <a href="" class = "btn btn-primary">Autorizar</a>
+                                            <a href="#" class = "btn btn-primary">Autorizar</a>
                                         </td >
                                     @endif
 
                                 @endif
-                                
+
                                 @if($work->status == 'INGRESADA' or $work->status == 'ACEPTADA')
                                     <td with="10px">
                                         <a href="" class = "btn btn-danger">Anular</a>
                                     </td>
                                 @endif
-                        
-                                
                             </tr>
                             @endforeach
                         </tbody>
@@ -64,7 +68,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 @endsection

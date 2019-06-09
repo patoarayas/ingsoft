@@ -12,15 +12,23 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif    
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Academicos</button>            
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Estudiantes</button> 
-                    <a href ="{{route('types.index')}}" class="btn btn-primary btn-lg btn-block">Administrar Tipo De Actividad De Titulación</a>
-                    <a href ="{{route('works.index')}}" class="btn btn-primary btn-lg btn-block">Administrar Actividad De Titulación</a>           
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Inscripción Formal</button>        
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Examen de Título</button>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Consultar Actividades De Titulación Vigentes</button>
-                    
+                    @endif
+
+                    @if(Auth()->user()->role == 'SECRETARIA' or Auth()->user()->role == 'TITULACION')
+                      <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Academicos</button>
+                      <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Estudiantes</button>
+                      <a href ="{{route('types.index')}}" class="btn btn-primary btn-lg btn-block">Administrar Tipo De Actividad De Titulación</a>
+                      <a href ="{{route('works.index')}}" class="btn btn-primary btn-lg btn-block">Administrar Actividad De Titulación</a>
+                      <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Inscripción Formal</button>
+                      <button type="button" class="btn btn-primary btn-lg btn-block">Registrar Examen de Título</button>
+                      <button type="button" class="btn btn-primary btn-lg btn-block">Consultar Actividades De Titulación Vigentes</button>
+
+                    @else<!-- solo queda academico-->
+                      <button type="button" class="btn btn-primary btn-lg btn-block">Consultar Actividades De Titulación Vigentes</button>
+                    @endif
+
+
+
                 </div>
             </div>
         </div>
