@@ -6,7 +6,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,6 +19,7 @@
 
         <link href ="{{asset('css/app.css')}}" rel="stylesheet">
         <link href ="{{asset('css/style-layout.css')}}" rel="stylesheet">
+
         
     </head>
 
@@ -104,13 +104,15 @@
             </div>
         </div>
 
-        @endif 
+        @endif
         @yield('content')
-            
-        </main>
-        
 
+        </main>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 
-    
+
 </html>

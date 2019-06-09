@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
 
         // SECRETARIA
         App\User::create([
-            'name'=>'secretaria',
+            'name'=>'Secretaria',
             'email'=>'secretaria@ucn.cl',
             'password'=>bcrypt('secretaria'),
             'role'=>'secretaria',
@@ -32,10 +32,18 @@ class UsersTableSeeder extends Seeder
 
         // TITULACION
         App\User::create([
-            'name'=>'titulacion',
+            'name'=>'Titulacion',
             'email'=>'titulacion@ucn.cl',
             'password'=>bcrypt('titulacion'),
             'role'=>'titulacion',
+        ]);
+
+        // ACADEMICO
+        App\User::create([
+            'name'=>'Academico',
+            'email'=>'academico@ucn.cl',
+            'password'=>bcrypt('academico'),
+            'role'=>'academico',
         ]);
     }
 }
