@@ -26,7 +26,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::orderBy('id','DESC')->paginate();
-        //dd($types); //funcionara para revisar los datos de la bd 
+        //dd($types); //funcionara para revisar los datos de la bd
         return view('admin.types.index', compact('types'));
     }
 
@@ -100,6 +100,6 @@ class TypeController extends Controller
     public function destroy($id)
     {
         $type=Type::find($id)->delete();
-       return back()->with('info','Eliminado correctamente'); 
+       return back()->with('info','Eliminado correctamente');
     }
 }

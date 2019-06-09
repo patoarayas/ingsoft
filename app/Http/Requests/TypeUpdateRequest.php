@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TypeUpdateRequest extends FormRequest
 {
@@ -23,11 +24,23 @@ class TypeUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
-            'activity_name' =>'required',
+            'activity_name' =>
+                [
+                    'required',
+                    Rule::unique('types','activity_name')->ignore($this->type)
+                ],
             'max_students'=>'required',
             'duration'=>'required',
             'req_external_org'=>'required',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'activity_name.required' => 'El campo nombre no puede estar vacio',
+            'activity_name.unique' => 'Ya existe un tipo de actividad con ese nombre'
         ];
     }
 }
