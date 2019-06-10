@@ -50,6 +50,7 @@ class TypeController extends Controller
     {
 
         $type = Type::create($request->all());
+        
         return  redirect()->route('types.index',$type->id)->with('info','Tipo de actividad creada correctamente');
     }
 

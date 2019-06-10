@@ -7,12 +7,13 @@
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
                     <a href ="{{route('works.index')}}"class="btn btn-primary  float-left">Volver</a>
-                    CREAR TIPO DE ACTIVIDAD DE TITULACIÓN.
+                    CREAR ACTIVIDAD DE TITULACIÓN.
                     <div class ="card-body text-left">
                     {!! Form::open(['route' => 'works.store'])!!}
-                    @include('admin.works.partials.form')
-                    {!!Form::close()!!}
-                    </div>
+                    @include('admin.works.partials.createForm')
+                   {!!Form::close()!!}
+
+                    <div>
                 </div>
                 <!-- aca hacemos el llamado al form que se encargara de recibir los datos y guardarlos-->
             </div>

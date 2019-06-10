@@ -11,11 +11,13 @@
     {{ Form::label('req_external_org','Requiere Organización Externa')}}
     {{ Form::select('req_external_org',[1=>'SI',0=>'NO'],null,['class'=>'form-control','id'=>'req_external_org']) }}
 
+    
+
 </div>
 
 <div class="form-group text-center">
     {{
-      Form::submit('Guardar',['class'=>'btn btn-primary'])
+      Form::submit('Guardar',['class'=>'btn btn-success'])
     }}
 </div>
 <!-- Estos 2 forms-group controlan "CREATE" del tipo de actividad de titulacion-->

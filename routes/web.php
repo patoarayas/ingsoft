@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //        Antes eran PageController
 Route::get('type', 'HomeController@type')->name('type');
 Route::get('work', 'HomeController@work')->name('work');
+Route::get('asignarComision','WorkController@asignarComision')->name('asignarComision');
 
 //admin
 
