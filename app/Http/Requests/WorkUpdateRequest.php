@@ -33,9 +33,9 @@ class WorkUpdateRequest extends FormRequest
         'cant_students'=>'required',
         'year_reg'=>'required',
         'semester_reg'=>'required',
-        'graduation_date'=>'required',
-        'grade',
-        'curricular_code'
+        'graduation_date'=>'nullable',
+        'grade'=>'nullable',
+        'curricular_code'=>'nullable'
         ];
     }
 }

@@ -23,18 +23,18 @@ class WorkStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return 
+        return
         ['title'=>'required',
         'status'=>'default',
         'start_date'=>'required',
         'finish_date'=>'required',
-        'name_ext_org',
-        'tutor_ext_org',
-        'cant_students'=>'required',
-        'year_reg'=>'required',
-        'semester_reg'=>'required',
-        'graduation_date'=>'required',
-        'grade'=>'default',
-        'curricular_code'];
+        'name_ext_org'=>'nullable',
+        'tutor_ext_org'=>'nullable',
+        'cant_students'=>'nullable',
+        'year_reg'=>'nullable',
+        'semester_reg'=>'nullable',
+        'graduation_date'=>'nullable',
+        'grade'=>'nullable',
+        'curricular_code'=>'nullable'];
     }
 }

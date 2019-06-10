@@ -110,10 +110,6 @@
         </main>
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
     </body>
 
 
