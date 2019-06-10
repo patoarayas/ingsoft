@@ -20,7 +20,7 @@
         <link href ="{{asset('css/app.css')}}" rel="stylesheet">
         <link href ="{{asset('css/style-layout.css')}}" rel="stylesheet">
 
-        
+
     </head>
 
     <body>
@@ -110,8 +110,7 @@
         </main>
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+
     </body>
 
 
