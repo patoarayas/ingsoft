@@ -2,7 +2,10 @@
 
 @section('content')
 
+<<<<<<< HEAD
 </script>
+=======
+>>>>>>> upstream/master
 <div class ="container">
     <div class="row justify-content-center">
         <div class="col-md-9">

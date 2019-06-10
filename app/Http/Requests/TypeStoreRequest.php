@@ -24,10 +24,17 @@ class TypeStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'activity_name' =>'required',
+            'activity_name' =>'required|unique:types,activity_name',
             'max_students'=>'required',
             'duration'=>'required',
             'req_external_org'=>'required',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'activity_name.required' => 'El campo nombre no puede estar vacio',
+            'activity_name.unique' => 'Ya existe un tipo de actividad con ese nombre.'
         ];
     }
 }

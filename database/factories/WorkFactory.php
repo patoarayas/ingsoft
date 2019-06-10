@@ -20,7 +20,7 @@ $factory->define(App\Work::class, function (Faker $faker) {
         'tutor_ext_org'=>$faker->sentence(1),
         'cant_students'=>rand(1,4),
         'year_reg'=>$faker->year,
-        'semester_reg'=>rand(1,2),
+        'semester_reg'=>$faker->randomElement(['PRIMERO','SEGUNDO']),
         'graduation_date'=>$faker->date,
         'grade'=>rand(1,7),
         'curricular_code'=>$faker->sentence(1),

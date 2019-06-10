@@ -16,7 +16,7 @@ Incluye a: CU021
 #### Curso normal de los eventos
 |Accion del usuario | Respuesta del sistema|
 |-------------------|----------------------|
-|1. Este caso de uso comienza cuando el usuario desea autorizar una actividad de titulación ||
+|1. Este caso de uso comienza cuando el usuario desea autorizar una actividad de titulación||
 ||2. El sistema solicita ingresar los miembros de la comisión correctora por su rut según halla lugares vacantes en la misma.|
 |3. El usuario ingresa los miembros para la comisión correctora ||
 ||4. El sistema valida los datos ingresados|

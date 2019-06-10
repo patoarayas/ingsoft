@@ -13,16 +13,20 @@
 
 Route::get('/', function () {
     //Llama a la vista del login, en views/auth/login
-    return view('auth/login'); 
+    return view('auth/login');
 });
 
 Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('type', 'Web\PageController@type')->name('type');
-Route::get('work', 'Web\PageController@work')->name('work');
+
+// TODO:: ¿A donde apuntas estas rutas, donde son usadas?
+//        Antes eran PageController
+Route::get('type', 'HomeController@type')->name('type');
+Route::get('work', 'HomeController@work')->name('work');
 
 //admin
+
 Route::resource('types','Admin\TypeController');
 Route::resource('works','Admin\WorkController');

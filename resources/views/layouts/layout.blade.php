@@ -20,7 +20,7 @@
         <link href ="{{asset('css/app.css')}}" rel="stylesheet">
         <link href ="{{asset('css/style-layout.css')}}" rel="stylesheet">
 
-        
+
     </head>
 
     <body>
@@ -110,6 +110,10 @@
         </main>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
     </body>
 
 
