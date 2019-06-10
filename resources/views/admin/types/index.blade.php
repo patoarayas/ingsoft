@@ -8,7 +8,7 @@
                 <div class="card-header text-center font-weight-bold">
                 <a href ="{{route('home')}}"class="btn btn-primary float-left">Volver</a>
                     TIPOS DE ACTIVIDAD DE TITULACIÓN
-                    <a href ="{{route('types.create' )}}"class="btn btn-primary float-right">CREAR TIPO DE ACTIVIDAD</a>
+                    <a href ="{{route('types.create' )}}"class="btn btn-success float-right">CREAR TIPO DE ACTIVIDAD</a>
                 </div>
                 <div class ="card-body text-center">
                     <table class = "table table-striped table-hover" >
