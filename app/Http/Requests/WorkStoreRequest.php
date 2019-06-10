@@ -34,7 +34,7 @@ class WorkStoreRequest extends FormRequest
         'year_reg'=>'required',
         'semester_reg'=>'required',
         'graduation_date'=>'required',
-        'grade',
+        'grade'=>'default',
         'curricular_code'];
     }
 }

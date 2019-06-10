@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
 
         // TITULACION
         App\User::create([
-            'name'=>'Titulacion',
+            'name'=>'Titulación',
             'email'=>'titulacion@ucn.cl',
             'password'=>bcrypt('titulacion'),
             'role'=>'titulacion',

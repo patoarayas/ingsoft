@@ -83,12 +83,13 @@ class WorkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
+        $works = Work::orderBy('id','ASC')->get();
         $work=Work::find($id);
         $students = Student::orderBy('id','ASC')->get();
         $academics = Academic::orderBy('id','ASC')->get();
         $types = Type::orderBy('id','ASC')->get();
-        return view('admin.works.edit',compact('work','types','students','academics'));
+        return view('admin.works.edit',compact('work','types','students','academics','works'));
     }
 
     /**
