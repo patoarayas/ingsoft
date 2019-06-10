@@ -1,13 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-<script type="text/javascript">
-function countStudens() {
-    var max = document.getElementById("typeSelected").htmlFor;
-    document.getElementById("labelCantStudents").innerHTML = max;
 
-}
-</script>
 <div class ="container">
     <div class="row justify-content-center">
         <div class="col-md-9">
