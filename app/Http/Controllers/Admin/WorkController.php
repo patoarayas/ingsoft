@@ -128,4 +128,10 @@ class WorkController extends Controller
         $work=Work::find($id)->delete();
        return back()->with('info','Eliminado correctamente');
     }
+
+    public function asignarComision($id){
+        $work=Work::find($id);
+        $academics = Academic::orderBy('id','ASC')->get();
+        return view('admin.works.asignarComision',compact('work','academics'));
+    }
 }
