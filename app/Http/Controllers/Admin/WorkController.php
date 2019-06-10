@@ -64,10 +64,10 @@ class WorkController extends Controller
         //Fin Cambios
 
         $work = Work::create($request->all());
-        // Mas cambios
-        dd($work);
-        $type = Type::find($work_id);
-        //Mas cambios
+        $type = Type::find($work->type_id);
+
+        
+
         return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación creada correctamente');
     }
 
