@@ -8,9 +8,13 @@ use App\Work;
 use App\Type;
 use App\Student;
 use App\Academic;
-use App\Http\Requests\WorkStoreRequest;
-use App\Http\Requests\WorkUpdateRequest;
-class WorkController extends Controller
+use App\Career;
+use App\CareerStudent;
+use App\Http\Requests\StudentStoreRequest;
+use App\Http\Requests\StudentUpdateRequest;
+use Freshwork\ChileanBundle\Rut;
+
+class StudentController extends Controller
 {
 
 
@@ -24,13 +28,10 @@ class WorkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $works = Work::orderBy('id','DESC')->paginate();
-        $types = Type::orderBy('id','ASC')->get();
+    {   $careers = Career::orderBy('id','ASC')->get();
         $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
         //dd($types); //funcionara para revisar los datos de la bd
-        return view('admin.works.index', compact('works','types','students','academics'));
+        return view('admin.students.index', compact('students','careers'));
     }
 
 
@@ -42,10 +43,8 @@ class WorkController extends Controller
     public function create()
     {
         $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
-        $types = Type::orderBy('id','ASC')->get();
-        $works = Work::orderBy('id','DESC')->paginate();
-        return view('admin.works.create',compact('types','works','students','academics'));
+        $careers = Career::orderBy('id','ASC')->get();
+        return view('admin.students.create',compact('types','careers'));
     }
 
     /**
@@ -54,8 +53,9 @@ class WorkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(WorkStoreRequest $request)
+    public function store(StudentStoreRequest $request)
     {
+        /*
         // Cambios
         $students = Student::orderBy('id','ASC')->get();
         $academics = Academic::orderBy('id','ASC')->get();
@@ -63,12 +63,13 @@ class WorkController extends Controller
 
         //Fin Cambios
 
-        $work = Work::create($request->all());
+        $work = Studentcreate($request->all());
         // Mas cambios
         dd($work);
-        $type = Type::find($work->id_type);
+        $type = Type::find($work_id);
         //Mas cambios
         return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación creada correctamente');
+        */
     }
 
     /**
@@ -79,12 +80,12 @@ class WorkController extends Controller
      */
     public function show($id)
     {
-        $work=Work::find($id);
-        $types = Type::orderBy('id','ASC')->get();
-        $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
+        $student = Student::find($id);
+        $careers = $student->careers; //obtengo todos los registros que relacionan estudiante y carrera 
+        $rut = Rut::set($student->rut)->fix()->format(); //usando libreria chileanbundle
+        
         //dd($types); //funcionara para revisar los datos de la bd
-        return view('admin.works.show',compact('work','types','students','academics'));
+        return view('admin.students.show',compact('student','rut','careers'));
     }
 
     /**
@@ -95,12 +96,13 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        $works = Work::orderBy('id','ASC')->get();
-        $work=Work::find($id);
+        /*$works = StudentorderBy('id','ASC')->get();
+        $work=Studentfind($id);
         $students = Student::orderBy('id','ASC')->get();
         $academics = Academic::orderBy('id','ASC')->get();
         $types = Type::orderBy('id','ASC')->get();
         return view('admin.works.edit',compact('work','types','students','academics','works'));
+        */
     }
 
     /**
@@ -112,9 +114,10 @@ class WorkController extends Controller
      */
     public function update(WorkUpdateRequest $request, $id)
     {
-        $work=Work::find($id);
+        /*$work=Studentfind($id);
         $work->fill($request->all())->save();
         return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación actualizada correctamente');
+        */
     }
 
     /**
@@ -125,13 +128,9 @@ class WorkController extends Controller
      */
     public function destroy($id)
     {
-        $work=Work::find($id)->delete();
+       Student::find($id)->delete();
        return back()->with('info','Eliminado correctamente');
     }
 
-    public function asignarComision($id){
-        $work=Work::find($id);
-        $academics = Academic::orderBy('id','ASC')->get();
-        return view('admin.works.asignarComision',compact('work','academics'));
-    }
+
 }

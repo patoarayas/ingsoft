@@ -23,11 +23,13 @@ class CreateStudentsTable extends Migration
 
             //FK relacion con tabla WORKS
             $table->integer('work_id')->unsigned();
-
+               
+            
             $table->timestamps();
 
             //Relacionamiento con tabla WORKS
             $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade')->onUpdate('cascade');
+           
         });
     }
 

@@ -16,10 +16,11 @@ class DatabaseSeeder extends Seeder
          */
         $this->call(UsersTableSeeder::class);
         $this->call(TypesTableSeeder::class);
+        $this->call(CareerTableSeeder::class);
         $this->call(WorksTableSeeder::class);
         $this->call(StudentsTableSeeder::class);
         $this->call(AcademicsTableSeeder::class);
-        $this->call(CareerTableSeeder::class);
+        
 
     }
 }

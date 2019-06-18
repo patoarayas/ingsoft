@@ -14,14 +14,11 @@ class CreateCareersTable extends Migration
     public function up()
     {
         Schema::create('careers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('career');
+            $table->increments('id');
+            $table->enum('career',['IenCI','IECI','ICCI','ICCIV']); //IECI = EJECUCION, ICCIV = Malla nueva
             $table->timestamps();
-            //FK relacion con tabla STUDENTS
-            $table->integer('students_id')->unsigned();
-            //Relacionamiento con tabla STUDENTS
-            $table->foreign('students_id')->references('id')->on('students')
-            ->onDelete('cascade')->onUpdate('cascade');
+            
+           
         });
     }
 

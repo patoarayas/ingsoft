@@ -14,4 +14,8 @@ class Student extends Model
     public function work(){
         return $this->belongsTo(Work::class);
     }
+
+    public function careers(){
+        return $this->belongsToMany(Career::class);
+    }
 }

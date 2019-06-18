@@ -21,13 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// TODO:: ¿A donde apuntas estas rutas, donde son usadas?
+
 //        Antes eran PageController
 Route::get('type', 'HomeController@type')->name('type');
 Route::get('work', 'HomeController@work')->name('work');
-Route::get('asignarComision','WorkController@asignarComision')->name('asignarComision');
+Route::get('student','HomeController@student')->name('student');
+
 
 //admin
 
 Route::resource('types','Admin\TypeController');
 Route::resource('works','Admin\WorkController');
+Route::resource('students','Admin\StudentController');
