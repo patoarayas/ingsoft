@@ -16,13 +16,15 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             
             $table->increments('id');
-            $table->string('rut',9)->unique();
+            $table->string('rut',128)->unique();
             $table->string('name',128);
             $table->string('email',128)->unique();
             $table->string('phone')->nullable();
+            $table->string('career',128)->default('Malo');
+            
 
             //FK relacion con tabla WORKS
-            $table->integer('work_id')->unsigned();
+            $table->integer('work_id')->unsigned()->nullable();
                
             
             $table->timestamps();

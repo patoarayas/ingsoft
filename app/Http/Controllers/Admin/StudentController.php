@@ -28,10 +28,10 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $careers = Career::orderBy('id','ASC')->get();
-        $students = Student::orderBy('id','ASC')->get();
+    {   
+        $students = Student::orderBy('id','DESC')->get();
         //dd($types); //funcionara para revisar los datos de la bd
-        return view('admin.students.index', compact('students','careers'));
+        return view('admin.students.index', compact('students'));
     }
 
 
@@ -42,9 +42,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $students = Student::orderBy('id','ASC')->get();
-        $careers = Career::orderBy('id','ASC')->get();
-        return view('admin.students.create',compact('types','careers'));
+        
+        return view('admin.students.create');
     }
 
     /**
@@ -55,21 +54,38 @@ class StudentController extends Controller
      */
     public function store(StudentStoreRequest $request)
     {
-        /*
-        // Cambios
-        $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
-        $types = Type::orderBy('id','ASC')->get();
+        $student = Student::create( $request->all() );
+        $rut = $student->rut;
 
-        //Fin Cambios
+        $student->rut = strval(Rut::parse($rut)->number()).strval(Rut::parse($rut)->vn());
+        $student->save();
+       
+        
+        
+        if (Rut::parse($rut)->quiet()->validate() == false ){//si la validacion es incorrecta borramos el estudiante
+            $this->destroy($student->id);
+            return redirect()->route('students.create')->with('info','¡ Rut mal ingresado, intente nuevamente !');
+        }
+        
+        $career = $student->career;
+        echo $career;
+        if($career == "Ingeniería en Computación e Informática"){
+            $student->careers()->attach(1);
+        }
+        if($career == "Ingeniería Ejecución en Computación e Informática"){
+            $student->careers()->attach(2);
+        }
 
-        $work = Studentcreate($request->all());
-        // Mas cambios
-        dd($work);
-        $type = Type::find($work_id);
-        //Mas cambios
-        return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación creada correctamente');
-        */
+        if ($career == "Ingeniería Civil en Computación e Informática (Malla-Nueva)"){
+            $student->careers()->attach(3);
+        }
+        
+        if ($career == "Ingeniería Civil en Computación e Informática (Malla-Antigua)"){
+            $student->careers()->attach(4);
+        }
+        
+
+        return redirect()->route('students.index',$student->id)->with('info','Estudiante creado con éxito');
     }
 
     /**
@@ -82,10 +98,14 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $careers = $student->careers; //obtengo todos los registros que relacionan estudiante y carrera 
-        $rut = Rut::set($student->rut)->fix()->format(); //usando libreria chileanbundle
+        $rut = $student->rut;
+
+        $number = strVal(Rut::parse($rut)->number());
+        $vn = strVal(Rut::parse($rut)->vn());
+
+        $rutFormateado = Rut::set()->number($number)->vn($vn)->format();
         
-        //dd($types); //funcionara para revisar los datos de la bd
-        return view('admin.students.show',compact('student','rut','careers'));
+        return view('admin.students.show',compact('student','rutFormateado','careers'));
     }
 
     /**
@@ -132,5 +152,86 @@ class StudentController extends Controller
        return back()->with('info','Eliminado correctamente');
     }
 
+
+    public function check($rut) {
+
+        $cleanedRut = $this->clean($rut);
+
+        if (! $cleanedRut)
+            return false;
+
+        list($numero, $digitoVerificador) = explode('-', $cleanedRut);
+
+        //Validamos requisitos m?nimos
+        if ((($digitoVerificador != 'K') && (! is_numeric($digitoVerificador))) || (count(str_split($numero)) > 11))
+            return false;
+
+        //Validamos que todos los caracteres del n?mero sean d?gitos
+        foreach(str_split($numero) as $chr) {
+            if (! is_numeric($chr))
+                return false;
+        }
+
+        //Calculamos el digito verificador
+        $digit = $this->digitoVerificador($numero);
+
+        //Comparamos el digito verificador calculado con el entregado
+        if($digit == $digitoVerificador)
+            return true;
+
+        return false;
+    }
+
+    public function clean($originalRut, $incluyeDigitoVerificador = true) {
+
+        //Eliminamos espacios al principio y final
+        $originalRut = trim($originalRut);
+        //En caso de existir, eliminamos ceros ("0") a la izquierda
+        $originalRut = ltrim($originalRut, '0');
+        $input		= str_split($originalRut);
+        $cleanedRut	= '';
+        foreach ($input as $key => $chr) {
+            //Digito Verificador
+            if ((($key + 1) == count($input)) && ($incluyeDigitoVerificador)){
+                if (is_numeric($chr) || ($chr == 'k') || ($chr == 'K'))
+                    $cleanedRut .= '-'.strtoupper($chr);
+                else
+                    return false;
+            }
+            //N?meros del RUT
+            elseif (is_numeric($chr))
+                $cleanedRut .= $chr;
+        }
+
+        if (strlen($cleanedRut) < 3)
+            return false;
+
+        return $cleanedRut;
+    }
+
+    public function digitoVerificador($rut) {
+        //Preparamos el RUT recibido
+        $numero = $this->clean($rut, false);
+        //Calculamos el d?gito verificador
+        $txt		= array_reverse(str_split($numero));
+        $sum		= 0;
+        $factors	= array(2,3,4,5,6,7,2,3,4,5,6,7);
+        foreach($txt as $key => $chr) {
+            $sum += $chr * $factors[$key];
+        }
+
+        $a			= $sum % 11;
+        $b			= 11-$a;
+
+        if($b == 11)
+            $digitoVerificador	= 0;
+        elseif($b == 10)
+            $digitoVerificador	= 'K';
+        else
+            $digitoVerificador = $b;
+        //Convertimos el n?mero a cadena para efectos de poder comparar
+        $digitoVerificador = (string)$digitoVerificador;
+        return $digitoVerificador;
+    }
 
 }

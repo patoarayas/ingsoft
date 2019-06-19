@@ -15,7 +15,7 @@ class CreateCareersTable extends Migration
     {
         Schema::create('careers', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('career',['IenCI','IECI','ICCI','ICCIV']); //IECI = EJECUCION, ICCIV = Malla nueva
+            $table->enum('career',['Ingeniería en Computación e Informática','Ingeniería Ejecución en Computación e Informática','Ingeniería Civil en Computación e Informática (Malla-Nueva)','Ingeniería Civil en Computación e Informática (Malla-Antigua)']);
             $table->timestamps();
             
            

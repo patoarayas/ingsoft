@@ -69,7 +69,7 @@
 <script>
 function searchStudent() {
  
-    var search = prompt("Nombre del estudiante - Rut sin guión");
+    var search = prompt("Nombre del estudiante - Rut sin puntos y sin guión");
     if (search != null || search != "") {
         find(search)
     } 

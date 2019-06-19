@@ -13,25 +13,25 @@ class CareerTableSeeder extends Seeder
     {
        App\Career::create([
 
-        'career'=> 'IenCI'
+        'career'=> 'Ingeniería en Computación e Informática'
        ]        
        );
 
        App\Career::create([
 
-        'career'=> 'IECI'
+        'career'=> 'Ingeniería Ejecución en Computación e Informática'
        ]        
        );
 
        App\Career::create([
 
-        'career'=> 'ICCI'
+        'career'=> 'Ingeniería Civil en Computación e Informática (Malla-Nueva)'
        ]        
        );
 
        App\Career::create([
 
-        'career'=> 'ICCIV' //malla vieja de civil
+        'career'=> 'Ingeniería Civil en Computación e Informática (Malla-Antigua)'
        ]        
        );
     }

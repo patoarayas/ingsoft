@@ -6,11 +6,11 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
-                    <a href ="{{route('types.index')}}"class="btn btn-primary  float-left">Volver</a>
-                    CREAR TIPO DE ACTIVIDAD DE TITULACIÓN.
+                    <a href ="{{route('students.index')}}"class="btn btn-primary  float-left">Volver</a>
+                    CREAR ESTUDIANTE
                     <div class ="card-body text-left">
-                    {!! Form::open(['route' => 'types.store'])!!}
-                    @include('admin.types.partials.form')
+                    {!! Form::open(['route' => 'students.store'])!!}
+                    @include('admin.students.partials.form')
                     {!!Form::close()!!}
                     </div>
                 </div>

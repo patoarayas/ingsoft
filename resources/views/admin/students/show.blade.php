@@ -7,11 +7,11 @@
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
                     <a href ="{{route('students.index')}}"class="btn btn-primary  float-left">Volver</a>
-                    ESTUDIANTES
+                    ESTUDIANTE
                 </div>
                     <div class ="card-body text-left">
                             <p><strong>Nombre: </strong>{{$student->name}}</p>
-                            <p><strong>Rut: </strong>{{$rut}}</p>
+                            <p><strong>Rut: </strong>{{$rutFormateado}}</p>
                             <p><strong>E-mail: </strong>{{$student->email}}</p>
                             @if($student->phone != null or $student->phone != "")
                                 <p><strong>Teléfono: </strong>{{$student->phone}}</p>

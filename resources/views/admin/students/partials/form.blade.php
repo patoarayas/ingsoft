@@ -1,15 +1,22 @@
 <div class="form-group">
-    {{ Form::label('activity_name','Nombre Del Tipo De Actividad')}}
-    {{  Form::text('activity_name',null, ['class'=>'form-control','id' =>'activity_name']) }}
+    {{Form::label('name', 'Nombre: ')}}
+    {{Form::text('name',null,['class' => 'form-control','id'=>'nombre'])}}
 
-    {{ Form::label('max_students','Cantidad De Estudiantes Permitidos')}}
-    {{ Form::select('max_students',[1 =>'1',2=>'2',3=>'3',4=>'4'],null,['class'=>'form-control','id'=>'max_students']) }}
+    {{Form::label('rut', 'Rut: ')}}
+    {{Form::text('rut',null,['class' => 'form-control','id'=>'rut'])}}    
     
-    {{ Form::label('duration','Duración (Semetres)')}}
-    {{ Form::select('duration',[1 =>'1',2=>'2',3=>'3',4=>'4'],null,['class'=>'form-control','id'=>'duration']) }}
+    {{Form::label('email', 'E-mail: ')}}
+    {{Form::text('email',null,['class' => 'form-control','id'=>'email'])}}
 
-    {{ Form::label('req_external_org','Requiere Organización Externa')}}
-    {{ Form::select('req_external_org',[1=>'SI',0=>'NO'],null,['class'=>'form-control','id'=>'req_external_org']) }}
+    {{Form::label('phone', 'Teléfono: ')}}
+    {{Form::text('phone',null,['class' => 'form-control','id'=>'phone'])}}
+
+    {{Form::label('career', 'Carrera: ')}}
+    {{ Form::select('career',['Ingeniería Civil en Computación e Informática (Malla-Antigua)' => 'Ingeniería Civil en Computación e Informática (Malla-Antigua)',
+        'Ingeniería Civil en Computación e Informática (Malla-Nueva)' => 'Ingeniería Civil en Computación e Informática (Malla-Nueva)',
+        'Ingeniería Ejecución en Computación e Informática' => 'Ingeniería Ejecución en Computación e Informática',
+        'Ingeniería en Computación e Informática' => 'Ingeniería en Computación e Informática'],null,['class'=>'form-control']) }}
+
 
 </div>
 
@@ -18,4 +25,4 @@
       Form::submit('Guardar',['class'=>'btn btn-success'])
     }}
 </div>
-<!-- Estos 2 forms-group controlan "CREATE" del tipo de actividad de titulacion-->
+<!-- Estos 2 forms-group controlan "CREATE" del estudiante-->

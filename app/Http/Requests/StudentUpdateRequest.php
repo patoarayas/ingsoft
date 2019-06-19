@@ -25,10 +25,10 @@ class StudentUpdateRequest extends FormRequest
     {
         return
         [
-            'rut'=>'required|unique:students,rut'.$this->student,
+            'rut'=>'required|unique:students,rut,cl_rut'.$this->student,
             'name'=>'required',
             'email'=>'required',
-            'phone'=>'nullablle',
+            'phone'=>'nullable',
             'career'=>'required',
             'work_id'=>'nullable'];
             
