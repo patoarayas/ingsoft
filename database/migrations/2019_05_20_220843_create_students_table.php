@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('name',128);
             $table->string('email',128)->unique();
             $table->string('phone')->nullable();
-            $table->string('career',128)->default('Malo');
+            $table->string('career',128)->default('null');
             
 
             //FK relacion con tabla WORKS

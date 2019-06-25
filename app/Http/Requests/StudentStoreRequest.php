@@ -29,7 +29,7 @@ class StudentStoreRequest extends FormRequest
             'name'=>'required',
             'email'=>'required|unique:students,email',
             'phone'=>'nullable',
-            'career'=>'required',
+            'career'=>'nullable',
             'work_id'=>'nullable'];
             
         

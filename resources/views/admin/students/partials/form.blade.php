@@ -1,28 +1,47 @@
 <div class="form-group">
-    {{Form::label('name', 'Nombre: ')}}
-    {{Form::text('name',null,['class' => 'form-control','id'=>'nombre'])}}
 
-    {{Form::label('rut', 'Rut: ')}}
-    {{Form::text('rut',null,['class' => 'form-control','id'=>'rut'])}}    
+    {{ Form::label('name','NOMBRE')}}   
+    {{ Form::text('name',null, ['class'=>'form-control','id' =>'name']) }}
+    <br>
+    {{ Form::label('rut','RUT')}}
+    {{ Form::text('rut',$rutSinGuion,['class'=>'form-control','id'=>'rut' ,'readonly', 'name'=>'rut','value'=>'$rutSinGuion','placeholder'=>'$rutSinGuion'])}}
+    <br>
+    {{ Form::label('email','E-MAIL')}}   
+    {{ Form::text('email',$student->email, ['class'=>'form-control','id' =>'email']) }}
+    <br>
+    {{ Form::label('phone','TELÉFONO')}}   
+    {{ Form::text('phone',$student->phone, ['class'=>'form-control','id' =>'phone']) }}
+    <br>
+    {{ Form::label('label-careers','CARRERAS')}} 
+    <br>  
     
-    {{Form::label('email', 'E-mail: ')}}
-    {{Form::text('email',null,['class' => 'form-control','id'=>'email'])}}
+</div>
 
-    {{Form::label('phone', 'Teléfono: ')}}
-    {{Form::text('phone',null,['class' => 'form-control','id'=>'phone'])}}
+<div class="form-group">
+        <input type="checkbox" name="career1" value="Ingeniería en Computación e Informática"> Ingeniería en Computación e Informática<br>
+    </div>
 
-    {{Form::label('career', 'Carrera: ')}}
-    {{ Form::select('career',['Ingeniería Civil en Computación e Informática (Malla-Antigua)' => 'Ingeniería Civil en Computación e Informática (Malla-Antigua)',
-        'Ingeniería Civil en Computación e Informática (Malla-Nueva)' => 'Ingeniería Civil en Computación e Informática (Malla-Nueva)',
-        'Ingeniería Ejecución en Computación e Informática' => 'Ingeniería Ejecución en Computación e Informática',
-        'Ingeniería en Computación e Informática' => 'Ingeniería en Computación e Informática'],null,['class'=>'form-control']) }}
+    <div class="form-group">
+        <input type="checkbox" name="career2" value="Ingeniería Ejecución en Computación e Informática"> Ingeniería Ejecución en Computación e Informática<br>
+    </div>
 
+    <div class="form-group">
+        <input type="checkbox" name="career3" value="Ingeniería Civil en Computación e Informática (Malla-Nueva)"> Ingeniería Civil en Computación e Informática (Malla-Nueva)<br>
+    </div>
 
+    <div class="form-group">
+        <input type="checkbox" name="career4" value="Ingeniería Civil en Computación e Informática (Malla-Antigua)"> Ingeniería Civil en Computación e Informática (Malla-Antigua)<br>
+    </div>
 </div>
 
 <div class="form-group text-center">
     {{
-      Form::submit('Guardar',['class'=>'btn btn-success'])
+      Form::submit('Guardar Datos',['class'=>'btn btn-success'])
     }}
 </div>
-<!-- Estos 2 forms-group controlan "CREATE" del estudiante-->
+
+
+
+
+
+

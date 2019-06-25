@@ -25,11 +25,11 @@ class StudentUpdateRequest extends FormRequest
     {
         return
         [
-            'rut'=>'required|unique:students,rut,cl_rut'.$this->student,
+            'rut'=>'required:students,rut,cl_rut'.$this->student,
             'name'=>'required',
             'email'=>'required',
             'phone'=>'nullable',
-            'career'=>'required',
+            'career'=>'nullable',
             'work_id'=>'nullable'];
             
         
@@ -38,7 +38,7 @@ class StudentUpdateRequest extends FormRequest
     public function messages(){
         return [
             
-            'rut.unique' => 'Ya existe el rut ingresado.',
+            
             'career.required'=>'El campo Carrera no puede estar vacío',
             'name.required' => 'El campo nombre no puede estar vacío',
             'rut.required' => 'El campo RUT no puede estar vacío',
