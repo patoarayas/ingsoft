@@ -12,7 +12,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Career::class, function (Faker $faker) {
     return [
         //
-        'career'=>$faker->sentence(4),
-        'students_id'=>rand(1,20),
+        'career'=>$faker->randomElement(['IenCI','IECI','ICCI','ICCIV']),
+        
     ];
 });

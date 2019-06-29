@@ -16,7 +16,11 @@
   {{Form::date('finish_date',null,['class'=>'form-control','id' =>'finish_date'])}}
 
 
-
+  {{ Form::label('year_reg','Año Registro')}}
+  <br>
+  {{ Form::selectYear('year_reg', 2019, 2019, ['readonly'=>'true','class'=>'form-control','id' =>'year_reg']) }}
+  
+  <!-- falta seleccionar la id del  tipo de actividad seleccionado--> 
 </div>
 
 <div class="form-group text-center">

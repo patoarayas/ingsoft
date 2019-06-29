@@ -64,10 +64,10 @@ class WorkController extends Controller
         //Fin Cambios
 
         $work = Work::create($request->all());
-        $type = Type::find($work->type_id);
-
-        
-
+        // Mas cambios
+        dd($work);
+        $type = Type::find($work->id_type);
+        //Mas cambios
         return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación creada correctamente');
     }
 
@@ -127,5 +127,11 @@ class WorkController extends Controller
     {
         $work=Work::find($id)->delete();
        return back()->with('info','Eliminado correctamente');
+    }
+
+    public function asignarComision($id){
+        $work=Work::find($id);
+        $academics = Academic::orderBy('id','ASC')->get();
+        return view('admin.works.asignarComision',compact('work','academics'));
     }
 }
