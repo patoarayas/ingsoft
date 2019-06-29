@@ -7,45 +7,52 @@
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
                     <a href ="{{route('home')}}"class="btn btn-primary float-left">Volver</a>
-                    TIPOS DE ACTIVIDAD DE TITULACIÓN
-                    <a href ="{{route('types.create' )}}"class="btn btn-success float-right">CREAR TIPO DE ACTIVIDAD</a>
+                    ESTUDIANTES
+                    <a href ="{{route('students.create' )}}"class="btn btn-success float-right">CREAR ESTUDIANTE</a>
                 </div>
 
-                
+                <div class='text-center'>
+                <button type ="button" class="btn btn-success float-center" onclick="return searchStudent()" >Buscar Estudiante</button>
+                </div>
+
                 <div class ="card-body text-center">
                     <table class = "table table-striped table-hover" >
                         <thead>
                             <tr>
-                                <th with = "10px">ID</th>
-                                <th>Nombre</th>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>RUT</th>
+
                                 <th colspan="10px">&nbsp;</th>
                             </tr>
+                            
                         </thead>
                         <tbody>
-                            @foreach ($types as $type)
+                            @foreach ($students as $student)
                             <tr>
-                                <td>{{$type->id}}</td>
-                                <td>{{$type->activity_name}}</td>
+                                <td>{{$student->id}}</td>
+                                <td>{{$student->name}}</td>
+                                <td>{{$student->rut}}</td>
                                 <td with="10px"><!-- Mostrar-->
-                                <a href="{{route('types.show',$type->id)}}" class = "btn btn-primary "> Mostrar </a>
+                                <a href="{{route('students.show',$student->id)}}" class = "btn btn-primary "> Mostrar </a>
                                 </td>
                                 <!-- Editar-->
                                 <td with="10px">
-                                <a href="{{route('types.edit',$type->id)}}" class = "btn btn-primary"> Editar </a>
+                                <a href="{{route('students.edit',$student->id)}}" class = "btn btn-primary"> Editar </a>
                                 </td >
                                 <!-- Eliminar-->
                                 <td with ="10px">
-                                    <form action="{{ route('types.destroy', $type->id) }}" method="POST">
+                                    <form action="{{ route('students.destroy', $student->id) }}" method="POST">
                                         {{ method_field('delete') }}
                                         {{ csrf_field() }}
-                                        <button type="submit" onclick ="return ConfirmDelete()" class="btn btn-danger" class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" onclick ="return ConfirmDelete()" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $types->render() }}
+                    
                 </div>
             </div>
         </div>
@@ -54,8 +61,18 @@
 
 <script type = "text/javascript">
     function ConfirmDelete(){
-        var answer = confirm("¿Deseas eliminar este tipo de actividad?")
+        var answer = confirm("¿Deseas eliminar este estudiante?")
         return answer;
     }
+</script>
+
+<script>
+function searchStudent() {
+ 
+    var search = prompt("Nombre del estudiante - Rut sin puntos y sin guión");
+    if (search != null || search != "") {
+        find(search)
+    } 
+}
 </script>
 @endsection

@@ -16,6 +16,7 @@ class StudentsTableSeeder extends Seeder
          */
         factory(App\Student::class,20)->create()->each(function(App\Student $student){
             $student->work();
+            $student->careers()->attach(rand(1,4));
         });
         
     }

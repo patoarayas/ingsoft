@@ -30,7 +30,7 @@
         {{ Form::number('grade',null,['class'=>'form-control','step'=>'any','min'=>'1','max'=>'7','id' =>'grade'])}}
 
         {{ Form::label('graduation_date','Fecha De Titulacíon')}}
-        {{Form::date('graduation_date',null,['class'=>'form-control','id' =>'graduation_date'])}}
+         {{Form::date('graduation_date',null,['class'=>'form-control','id' =>'graduation_date'])}}
     @endif
     @if ($work->status == 'ACEPTADA' && $work->curricular_code != NULL)
         {{ Form::label('curricular_code','Codigo curricular')}}

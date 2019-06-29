@@ -11,9 +11,28 @@ class CareerTableSeeder extends Seeder
      */
     public function run()
     {
-        /*
-            Rellena la tabla CAREER con 22 carrers segun el Factory
-         */
-        factory(App\Career::class,22)->create();
+       App\Career::create([
+
+        'career'=> 'Ingeniería en Computación e Informática'
+       ]        
+       );
+
+       App\Career::create([
+
+        'career'=> 'Ingeniería Ejecución en Computación e Informática'
+       ]        
+       );
+
+       App\Career::create([
+
+        'career'=> 'Ingeniería Civil en Computación e Informática (Malla-Nueva)'
+       ]        
+       );
+
+       App\Career::create([
+
+        'career'=> 'Ingeniería Civil en Computación e Informática (Malla-Antigua)'
+       ]        
+       );
     }
 }
