@@ -114,6 +114,10 @@ class Work2Controller extends Controller
         if($request->curricular_code <0){
             return  redirect()->route('works2.edit',$work->id)->with('info','El codigo acepta solo valores numericos.');
         }
+
+        if($request->curricular_code==''){
+            return  redirect()->route('works2.edit',$work->id)->with('info','El codigo no debe quedar vacío');
+        }
         $work->curricular_code = strval($request->curricular_code);
         $work->save();
         //return back()->with('info','Código Curricular Añadido Correctamente');
