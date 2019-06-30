@@ -27,12 +27,17 @@ Route::get('type', 'HomeController@type')->name('type');
 Route::get('work', 'HomeController@work')->name('work');
 Route::get('student','HomeController@student')->name('student');
 
+Route::get('Admin\WorkController@cancelwork{id}');
+
 
 //admin
 
 Route::resource('types','Admin\TypeController');
 Route::resource('works','Admin\WorkController');
 Route::resource('students','Admin\StudentController');
+
+Route::resource('works1','Admin\Work1Controller');
+
 Route::resource('students/create2','Admin\StudentController');
 
 //ni funcionan xd

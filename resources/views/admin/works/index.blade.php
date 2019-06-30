@@ -27,7 +27,7 @@
                             @foreach ($works as $work)
                             <tr>
                                 <td>{{$work->id}}</td>
-                                <td>{{$work->title}}</td>
+                                <td><div>{{$work->title}}</div></td>
                                 <td>{{$work->status}}</td>
 
                                 <td with="10px"><!-- Mostrar-->
@@ -43,12 +43,12 @@
                                     @if($work->status == 'INGRESADA' and auth()->user()->role == 'TITULACION')
                                      <!-- Autorizr-->
                                         <td with="10px">
-                                            <a role="button" href="" class = "btn btn-primary">Autorizar</a>
+                                            <a role="button" href="'works.cancelwork($work',$work->id" class = "btn btn-primary">Autorizar</a>
                                         </td >
                                     @endif
 
-                                    <td with="10px">
-                                        <a href="#" class = "btn btn-danger">Anular</a>
+                                    <td with="10px"> 
+                                        <a href="{{route('works1.edit',$work->id)}}" onclick ="return ConfirmAnulation()" class = "btn btn-danger">Anular</a>
                                     </td>
                                 @endif
                             </tr>
@@ -63,4 +63,12 @@
 
 </div>
 
+<script type = "text/javascript">
+    function ConfirmAnulation(){
+        var answer = confirm("¿Deseas Anular Este Actividad?")
+        return answer;
+    }
+</script>
+
 @endsection
+

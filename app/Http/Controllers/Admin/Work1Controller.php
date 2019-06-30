@@ -10,7 +10,7 @@ use App\Student;
 use App\Academic;
 use App\Http\Requests\WorkStoreRequest;
 use App\Http\Requests\WorkUpdateRequest;
-class WorkController extends Controller
+class Work1Controller extends Controller
 {
 
 
@@ -95,12 +95,10 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        $works = Work::orderBy('id','ASC')->get();
-        $work=Work::find($id);
-        $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
-        $types = Type::orderBy('id','ASC')->get();
-        return view('admin.works.edit',compact('work','types','students','academics','works'));
+        
+        Work::find($id)->fill(array('status'=>'ANULADA'))->save();
+        return  redirect()->route('works.index')->with('info','Actividad de titulación ANULADA correctamente');
+
     }
 
     /**
@@ -137,9 +135,12 @@ class WorkController extends Controller
 
     public function cancelwork($id)
     {
+
+        
+        /*
         $work=Work::find($id);
         $work->status='ANULADA';
         $work->save();
-        return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación ANULADA correctamente');
+        return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación ANULADA correctamente');*/
     }
 }
