@@ -36,7 +36,10 @@ Route::resource('types','Admin\TypeController');
 Route::resource('works','Admin\WorkController');
 Route::resource('students','Admin\StudentController');
 
+//estos los agregue y funcionan (?) nose como pero lo hacen xD
 Route::resource('works1','Admin\Work1Controller');
+Route::resource('works2','Admin\Work2Controller');
+
 
 Route::resource('students/create2','Admin\StudentController');
 

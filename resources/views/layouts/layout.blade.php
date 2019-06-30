@@ -25,7 +25,7 @@
 
     <body>
 
-        <nav class="navbar navbar-expand-md">
+        <nav class="navbar navbar-expand-lg">
 
             <div class="container-fluid">
 

@@ -47,7 +47,7 @@
                                         </td >
                                     @endif
 
-                                    <td with="10px"> 
+                                    <td with="10px"> <!-- el edit en controlador works1 , solo cambia el estado a anulada-->
                                         <a href="{{route('works1.edit',$work->id)}}" onclick ="return ConfirmAnulation()" class = "btn btn-danger">Anular</a>
                                     </td>
                                 @endif
