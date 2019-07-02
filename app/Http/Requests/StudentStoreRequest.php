@@ -25,7 +25,11 @@ class StudentStoreRequest extends FormRequest
     {
         return
         [
+<<<<<<< HEAD
             'rut'=>'required|unique:students,rut,cl_rut',
+=======
+            'rut'=>'required|students,rut,cl_rut',
+>>>>>>> ad7de24401bb402fb90fd4fb0ce18c3098f56b6c
             'name'=>'required',
             'email'=>'required|unique:students,email',
             'phone'=>'nullable',
