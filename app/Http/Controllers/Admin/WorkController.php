@@ -134,9 +134,6 @@ class WorkController extends Controller
         $academics = Academic::orderBy('id','ASC')->get();
         return view('admin.works.asignarComision',compact('work','academics'));
     }
-<<<<<<< HEAD
-}
-=======
 
     public function cancelwork($id)
     {
@@ -146,4 +143,3 @@ class WorkController extends Controller
         return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación ANULADA correctamente');
     }
 }
->>>>>>> ad7de24401bb402fb90fd4fb0ce18c3098f56b6c

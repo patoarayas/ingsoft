@@ -19,12 +19,8 @@
                       <a href ="{{route('students.index')}}" class="btn btn-primary btn-medium btn-block">Administrar Estudiantes</a>
                       <a href ="{{route('types.index')}}" class="btn btn-primary btn-medium btn-block">Administrar Tipo De Actividad De Titulación</a>
                       <a href ="{{route('works.index')}}" class="btn btn-primary btn-medium btn-block">Administrar Actividad De Titulación</a>
-<<<<<<< HEAD
-                      <button type="button" class="btn btn-primary btn-medium btn-block">Registrar Inscripción Formal</button>
-=======
                       <a href ="{{route('works2.index')}}" class="btn btn-primary btn-medium btn-block">Registrar Inscripción Formal</a>
-                      
->>>>>>> ad7de24401bb402fb90fd4fb0ce18c3098f56b6c
+
                       <button type="button" class="btn btn-primary btn-medium btn-block">Registrar Examen de Título</button>
                       <button type="button" class="btn btn-primary btn-medium btn-block">Consultar Actividades De Titulación Vigentes</button>
 
