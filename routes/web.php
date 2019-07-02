@@ -44,7 +44,7 @@ Route::resource('students','Admin\StudentController');
 //estos los agregue y funcionan (?) nose como pero lo hacen xD
 Route::resource('works1','Admin\Work1Controller');
 Route::resource('works2','Admin\Work2Controller');
-Route::resource('works23','Admin\Work3Controller');
+Route::resource('works3','Admin\Work3Controller');
 
 >>>>>>> ad7de24401bb402fb90fd4fb0ce18c3098f56b6c
 Route::resource('students/create2','Admin\StudentController');
