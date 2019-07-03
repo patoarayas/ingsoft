@@ -27,26 +27,21 @@ Route::get('type', 'HomeController@type')->name('type');
 Route::get('work', 'HomeController@work')->name('work');
 Route::get('student','HomeController@student')->name('student');
 
-<<<<<<< HEAD
-=======
 Route::get('Admin\WorkController@cancelwork{id}');
 
->>>>>>> ad7de24401bb402fb90fd4fb0ce18c3098f56b6c
 
 //admin
+
 
 Route::resource('types','Admin\TypeController');
 Route::resource('works','Admin\WorkController');
 Route::resource('students','Admin\StudentController');
-<<<<<<< HEAD
-=======
 
 //estos los agregue y funcionan (?) nose como pero lo hacen xD
 Route::resource('works1','Admin\Work1Controller');
 Route::resource('works2','Admin\Work2Controller');
 Route::resource('works3','Admin\Work3Controller');
 
->>>>>>> ad7de24401bb402fb90fd4fb0ce18c3098f56b6c
 Route::resource('students/create2','Admin\StudentController');
 
 //ni funcionan xd

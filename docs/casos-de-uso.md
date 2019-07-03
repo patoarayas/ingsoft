@@ -1,13 +1,13 @@
 # Casos de uso:
 
-- [] **CU010** (SEC/TIT) Administrar estudiantes
+- [x] **CU010** (SEC/TIT) Administrar estudiantes
 
-    * - [] **CU011**  *extends*: Registrar
-    * - [] **CU012**  *extends*: Modificar
-    * - [] **CU013**  *extends*: Eliminar
+    * - [x] **CU011**  *extends*: Registrar
+    * - [x] **CU012**  *extends*: Modificar
+    * - [x] **CU013**  *extends*: Eliminar
 
 - [] **CU020** (SEC/TIT) Administrar acádemicos
-    * - [] **CU021** *extends*: Registrar
+    * - [x] **CU021** *extends*: Registrar
     * - [] **CU022** *extends*: Modificar
     * - [] **CU023** *extends*: Eliminar
 
@@ -16,11 +16,11 @@
     * - [x] **CU032** *extends*: Editar tipo de actividad de titulación
     * - [x] **CU033** *extends*: Eliminar tipo de actividad de titulación.
 
-- [] **CU040** (SEC/TIT) Inscribir actividad de titulacion
-    * - [] **CU011** *include*: Registrar estudiantes
-    * - [] **CU021** *include*: Registrar Academico
+- [x] **CU040** (SEC/TIT) Inscribir actividad de titulacion
+    * - [x] **CU011** *include*: Registrar estudiantes
+    * - [x] **CU021** *include*: Registrar Academico
 
-- [] **CU050** (TIT) Autorizar actividad de titulación
+- [x] **CU050** (TIT) Autorizar actividad de titulación
     * - [] **CU021** *include*: Registrar Academico
 
 - [] **CU060** (SEC/TIT) Registrar inscripción formal
@@ -31,4 +31,4 @@
 
 - [] **CU090** (SEC/TIT/ACA)Consultar actividad de titulacion vigente
 
-- []  **CU100** (SEC/TIT/ACA) Login
+- [x]  **CU100** (SEC/TIT/ACA) Login

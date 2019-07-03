@@ -25,23 +25,19 @@ class StudentStoreRequest extends FormRequest
     {
         return
         [
-<<<<<<< HEAD
-            'rut'=>'required|unique:students,rut,cl_rut',
-=======
             'rut'=>'required|students,rut,cl_rut',
->>>>>>> ad7de24401bb402fb90fd4fb0ce18c3098f56b6c
             'name'=>'required',
             'email'=>'required|unique:students,email',
             'phone'=>'nullable',
             'career'=>'nullable',
             'work_id'=>'nullable'];
-            
-        
+
+
     }
 
     public function messages(){
         return [
-            
+
             'rut.unique' => 'Ya existe el rut ingresado.',
             'career.required'=>'El campo Carrera no puede estar vacío',
             'name.required' => 'El campo Nombre no puede estar vacío',
