@@ -1,5 +1,8 @@
 <?php
 
+/* Este controlador solo controla la opcion de ANULAR trabajo
+*/
+
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -95,7 +98,7 @@ class Work1Controller extends Controller
      */
     public function edit($id)
     {
-        
+
         Work::find($id)->fill(array('status'=>'ANULADA'))->save();
         return  redirect()->route('works.index')->with('info','Actividad de titulación ANULADA correctamente');
 
@@ -136,7 +139,7 @@ class Work1Controller extends Controller
     public function cancelwork($id)
     {
 
-        
+
         /*
         $work=Work::find($id);
         $work->status='ANULADA';

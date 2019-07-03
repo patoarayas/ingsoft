@@ -14,11 +14,11 @@
   {{ Form::label('finish_date','Fecha programada de termino')}}
   {{Form::date('finish_date',null,['class'=>'form-control','id' =>'finish_date'])}}
 
+  <!-- Estas no se necesitan-->
   {{ Form::label('cant_students','Cantidad De Estudiantes')}}
   {{ Form::text('cant_students',null, ['readonly'=>'true','class'=>'form-control','id' =>'cant_students']) }}
 
   {{ Form::label('year_reg','Año Registro')}}
-  <br>
   {{ Form::selectYear('year_reg', 2019, 2019, ['readonly'=>'true','class'=>'form-control','id' =>'year_reg']) }}
 
   <!-- falta seleccionar la id del  tipo de actividad seleccionado-->

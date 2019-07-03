@@ -32,6 +32,7 @@ Route::get('Admin\WorkController@cancelwork{id}');
 
 //admin
 
+
 Route::resource('types','Admin\TypeController');
 Route::resource('works','Admin\WorkController');
 Route::resource('students','Admin\StudentController');
