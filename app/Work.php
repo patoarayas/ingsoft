@@ -10,7 +10,7 @@ class Work extends Model
     protected $fillable = ['title','status','start_date','finish_date',
                            'name_ext_org','tutor_ext_org','cant_students',
                            'year_reg','semester_reg','graduation_date',
-                           'grade','curricular_code','type_id'];
+                           'grade','curricular_code' ];
 
      // Atributos por default
     protected $attributes = [
@@ -32,8 +32,8 @@ class Work extends Model
     /**
      * Un trabajo pertenece a muchos estudiantes
      */
-    public function types(){
-        return $this->belongsTo(Type::class);
+    public function type(){
+        return $this->hasOne(Type::class);
     }
 
     /**

@@ -1,7 +1,7 @@
 
 <div class="form-group">
 {{ Form::label('grade','Nota')}}
-{{ Form::number('grade',null, ['class'=>'form-control','id' =>'grade','step'=>'any']) }}
+{{ Form::number('grade',null, ['class'=>'form-control','id' =>'grade','step'=>'any' , 'min'=>'1', 'max'=>'7']) }}
 
 {{ Form::label('graduation_date','Fecha examen de título')}}
 {{ Form::date('graduation_date',null, ['class'=>'form-control','id' =>'graduation_date']) }}

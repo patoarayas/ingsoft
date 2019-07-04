@@ -10,8 +10,8 @@
                     CREAR ACTIVIDAD DE TITULACIÓN.
                     <div class ="card-body text-left">
                     {!! Form::open(['route' => 'works.store'])!!}
-                    @include('admin.works.partials.createForm')
-                   {!!Form::close()!!}
+                        @include('admin.works.partials.formCreate')
+                    {!!Form::close()!!}
 
                     <div>
                 </div>

@@ -36,6 +36,6 @@ class WorkStoreRequest extends FormRequest
         'graduation_date'=>'nullable',
         'grade'=>'nullable',
         'curricular_code'=>'nullable',
-        'type_id'=>'required'];
+        ];
     }
 }
