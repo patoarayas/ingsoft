@@ -63,27 +63,35 @@ class WorkController extends Controller
      */
     public function store(WorkStoreRequest $request)
     {
-        dd($request); //ver #request , #studtens es un array que contiene la id de cada studiante seleccionado, lo mismo para academics
-        //$title = $request->title;
+        /*
+        //dd($request->all()); //ver #request , #studtens es un array que contiene la id de cada studiante seleccionado, lo mismo para academics
+        $title = $request->title;
         //$status = 'INGRESADA';
-        //$start_date = $request->start_date;
-        //$finish_date =$request->finish_date;
-        //$name_ext_org=$request->name_ext_org;
-        //$tutor_ext_org=$request->tutor_ext_org;
+        $start_date = $request->start_date;
+        $finish_date =$request->finish_date;
+        $name_ext_org=$request->name_ext_org;
+        $tutor_ext_org=$request->tutor_ext_org;
         //$cant_students =count($request->students->get('array'));
-        //$year_reg =2019;
-        //$semester_reg='1';
-        //$type_id = $request->type_id;
-        
-        //$work = Work::create();
-        //$work = Work::create(array($title,$status,$start_date,$finish_date,$name_ext_org,$tutor_ext_org,$cant_students,$year_reg,$semester_reg,$type_id));
+        $cant_students = 1;
+        $type_id = (int) $request->type_id;
+//dd($type_id);
+
+        $work = Work::create(['title'=>$title,
+        'start_date'=>$start_date,
+        'finish_date'=>$finish_date,
+        'name_ext_org'=>$name_ext_org,
+        'tutor_ext_org'=>$tutor_ext_org,
+        'cant_students'=>$cant_students,
+        'type_id'=>2]);
+        */
+        $work = Work::create($request->all());
         //$work->type_id()->associate($type_id);
         //$work->students()->attach($request->get('students'));
         //$work->academics()->attach($request->get('academics'));
 
-        //return redirect()->route('works.index',$work->id)->with('info','ACTIVIDAD DE TITULACIÓN CREADA CON EXITO')'';
-        
-        return '';
+        return redirect()->route('works.index',$work->id)->with('info','ACTIVIDAD DE TITULACIÓN CREADA CON EXITO');
+
+        //return '';
     }
 
     /**
