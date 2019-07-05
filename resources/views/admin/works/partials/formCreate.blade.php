@@ -9,15 +9,15 @@
     {{Form::label('type_id','Seleccione el Tipo de Actividad')}}
         <select class="form-control" name="type_id" id="type_id" onChange="hide()">
             @foreach($types as $type)
-                <option value="{{$type->id}}" id="{{$type->max_students}}" title = "{{$type->req_external_org}}">{{$type->activity_name}}</option>
+                <option value="{{$type->req_external_org}}" id="{{$type->max_students}}" title = "{{$type->activity_name}}">{{$type->activity_name}}
+                {{session(['id'=>$type->id])}}
+                </option>
             @endforeach
         </select>
         
 </div>
 
 <br>
-
-
 
 <div class="form-group">
     <script>
@@ -70,8 +70,9 @@
                             <tr>
                                 <td>{{ $student->rut}}</td>
                                 <td>{{ $student->name}}</td>
+                                
                                 <td width="10px">
-                                <input name="students" id="students" type="checkbox" value="{{$student->id}}" onclick="return myFun()"></td>
+                                <input name="students[]" id="students" type="checkbox" value="{{$student->id}}" onclick="return myFun()"></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -187,12 +188,10 @@
         var opciones = document.getElementById('type_id').options;
         var seleccion = document.getElementById('type_id').selectedIndex;
         var div = document.getElementById('organization');
-        var valor = opciones[seleccion].getAttribute('title');
-        var input =document.getElementById('id_type');
-        input.value = document.getElementById('type_id').textContent;
+        var valor = opciones[seleccion].value;
         
         
-        if(valor == true){
+        if(valor==true){
 
             div.style="";
         }
@@ -217,7 +216,7 @@
 <script>
 
     function myFun(){
-            var a = document.getElementsByName('students');
+            var a = document.getElementsByName('students[]');
             var limit= limite();
             var newvar = 0;
             var count;
