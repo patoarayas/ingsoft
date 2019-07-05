@@ -10,11 +10,7 @@ class Work extends Model
     protected $fillable = ['title','status','start_date','finish_date',
                            'name_ext_org','tutor_ext_org','cant_students',
                            'year_reg','semester_reg','graduation_date',
-<<<<<<< HEAD
-                           'grade','curricular_code','type_id' ];
-=======
                            'grade','curricular_code','type_id'];
->>>>>>> iteracion-2
 
      // Atributos por default
     protected $attributes = [
