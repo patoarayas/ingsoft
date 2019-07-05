@@ -45,10 +45,17 @@ class WorkAcademicsController extends Controller{
     public function update(Request $request, $id)
     {
         $work=Work::find($id);
+        if($request->name1==$request->name2 || $request->name1==$request->name3 || $request->name2==$request->name3){
+            return  redirect()->route('worksAcademics.index')->with('info','No se puede ingresar dos o más veces al mismo académico');
+        }
+        $work->status = 'ACEPTADA';
+        
+        
         $work->academics()->attach(Academic::where('name', $request->name1)->get(), ['academic_role' => $request->academic_role1]);
+        
         $work->academics()->attach(Academic::where('name', $request->name2)->get(), ['academic_role' => $request->academic_role2]);
         $work->academics()->attach(Academic::where('name', $request->name3)->get(), ['academic_role' => $request->academic_role3]);
-        $work->status = 'ACEPTADA';
+        $work->save();
         return  redirect()->route('worksAcademics.index')->with('info','Actividad de titulación autorizada correctamente');
     }
 }

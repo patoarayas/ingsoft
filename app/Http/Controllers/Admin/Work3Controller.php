@@ -80,6 +80,12 @@ class Work3Controller extends Controller
     public function update(Request $request, $id)
     {
         $work=Work::find($id);
+        if($request->graduation_date<0){
+            return  redirect()->route('works3.edit',$work->id)->with('info','El campo sólo acepta valores positivos.');
+        }
+        if($request->graduation_date>7){
+            return  redirect()->route('works3.edit',$work->id)->with('info','La nota no puede ser mayor a 7.0.');
+        }
         $work->graduation_date = strval($request->graduation_date);
         $work->status = 'FINALIZADA';
         $work->save();
