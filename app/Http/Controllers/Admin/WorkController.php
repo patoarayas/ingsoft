@@ -68,7 +68,7 @@ class WorkController extends Controller
         $semester_reg = 'PRIMERO';
         $type_id = session('id');//sesion que salvo el proyecto :p
         $work = Work::create(['title'=>$title,'status'=>$status,'start_date'=>$start_date,'finish_date'=>$finish_date,'name_ext_org'=>$name_ext_org,'tutor_ext_org'=>$tutor_ext_org,'cant_students'=>$cant_students,'year'=>$year,'semester_reg'=>$semester_reg,'type_id'=>$type_id]);
-        
+
         $academics =$request->academics;
         foreach($academics as $academic){
             $work->academics()->attach($academic);
@@ -85,8 +85,8 @@ class WorkController extends Controller
         //dd($students,$academics);
         //$work->students()->sync($request->students);
         //$work->academics()->sync($request->academics);
-
-        return $request;
+        return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación creada correctamente');
+        //return $request;
     }
 
     /**
