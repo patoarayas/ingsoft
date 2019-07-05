@@ -11,9 +11,9 @@ use App\Academic;
 use App\AcademicWork;
 use App\Http\Requests\WorkStoreRequest;
 use App\Http\Requests\WorkUpdateRequest;
+use Carbon\Carbon;
 class WorkController extends Controller
 {
-
 
     /* security verification */
     public function __construct(){
@@ -64,14 +64,60 @@ class WorkController extends Controller
         $name_ext_org=$request->name_ext_org;
         $tutor_ext_org=$request->tutor_ext_org;
         $cant_students = sizeof($request->students);
-        $year = 2019;
-        $semester_reg = 'PRIMERO';
+        $semester_reg = '';
+        $academics =$request->academics;
+        $students = $request->students;
         $type_id = session('id');//sesion que salvo el proyecto :p
+
+
+        $list = Carbon::parse($start_date);
+        $month =$list->month;
+        $year = $list->year;
+        $day = $list->day;
+
+        $list2 =Carbon::parse($finish_date);
+        $month2 =$list2->month;
+        $year2 = $list2->year;
+        $day2 = $list2->day;
+
+        if($year2<$year){
+            return redirect()->route('works.create')->with('info','¡ Año de termino menor que Año de inicio !');
+        }
+        
+        else{
+            if(($month2<$month) and ($year2 == $year) ){
+                return redirect()->route('works.create')->with('info','¡ Mes de termino menor que Mes de inicio !');
+            }
+            else{
+                if(($day2<$day) and($month2==$month) ){
+                    return redirect()->route('works.create')->with('info','¡ Dia de termino menor que Dia de inicio !');
+                }
+            }
+        }
+
+        if($month <7){
+            $semester_reg='PRIMERO';
+        }
+        else{
+            $semester_reg='SEGUNDO';
+        }
+
+        if(sizeof($students)==0){
+            return redirect()->route('works.create')->with('info','¡ Debe seleccionar al menos 1 estudiante !');
+        }
+
+        if(sizeof($academics)==0){
+            return redirect()->route('works.create')->with('info','¡ Debe seleccionar al menos 1 academico como profesor guia !');
+        }
+
         $work = Work::create(['title'=>$title,'status'=>$status,'start_date'=>$start_date,'finish_date'=>$finish_date,'name_ext_org'=>$name_ext_org,'tutor_ext_org'=>$tutor_ext_org,'cant_students'=>$cant_students,'year'=>$year,'semester_reg'=>$semester_reg,'type_id'=>$type_id]);
         
-        $academics =$request->academics;
+       
+        
         foreach($academics as $academic){
             $work->academics()->attach($academic);
+            $name_academic = Academic::find($academic)->get('name');
+            
             DB::table('academic_work')->where('work_id',$work->id)->update(['academic_role'=>'GUIA']);
             $work->save();
         }
@@ -81,12 +127,10 @@ class WorkController extends Controller
             $student->work_id = $work->id;
             $student->save();
         }
-
-        //dd($students,$academics);
-        //$work->students()->sync($request->students);
-        //$work->academics()->sync($request->academics);
-
-        return $request;
+        
+        return redirect()->route('works.index')->with('info','Actividad Creada Con Éxito');
+        
+        
     }
 
     /**
@@ -99,12 +143,9 @@ class WorkController extends Controller
     {
         $work=Work::find($id);
         $types=DB::table('types')->where('id',$work->type_id)->get('activity_name');
-       // $academics=DB::table('academic_work')->where('work_id',$id)->where(function($query){
-         //   $query->select(DB::raw('name'))->from('academics')->whereRaw('academics.id = academic_work.academic_id');
-
-        //});
+        $academics= $work->academics();
         $students = DB::table('students')->where('work_id',$id)->get('name');
-        return view('admin.works.show',compact('work','types','students'));
+        return view('admin.works.show',compact('work','types','students','academics'));
     }
 
     /**
