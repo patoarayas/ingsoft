@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Work;
 use App\Type;
 use App\Student;
 use App\Academic;
+use App\AcademicWork;
 use App\Http\Requests\WorkStoreRequest;
 use App\Http\Requests\WorkUpdateRequest;
 class WorkController extends Controller
@@ -33,7 +34,6 @@ class WorkController extends Controller
         return view('admin.works.index', compact('works','types','students','academics'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -56,27 +56,37 @@ class WorkController extends Controller
      */
     public function store(WorkStoreRequest $request)
     {
-        dd($request); //ver #request , #studtens es un array que contiene la id de cada studiante seleccionado, lo mismo para academics
-        //$title = $request->title;
-        //$status = 'INGRESADA';
-        //$start_date = $request->start_date;
-        //$finish_date =$request->finish_date;
-        //$name_ext_org=$request->name_ext_org;
-        //$tutor_ext_org=$request->tutor_ext_org;
-        //$cant_students =count($request->students->get('array'));
-        //$year_reg =2019;
-        //$semester_reg='1';
-        //$type_id = $request->type_id;
-        
-        //$work = Work::create();
-        //$work = Work::create(array($title,$status,$start_date,$finish_date,$name_ext_org,$tutor_ext_org,$cant_students,$year_reg,$semester_reg,$type_id));
-        //$work->type_id()->associate($type_id);
-        //$work->students()->attach($request->get('students'));
-        //$work->academics()->attach($request->get('academics'));
 
-        //return redirect()->route('works.index',$work->id)->with('info','ACTIVIDAD DE TITULACIÓN CREADA CON EXITO')'';
+        $title = $request->title;
+        $status = 'INGRESADA';
+        $start_date=$request->start_date;
+        $finish_date=$request->finish_date;
+        $name_ext_org=$request->name_ext_org;
+        $tutor_ext_org=$request->tutor_ext_org;
+        $cant_students = sizeof($request->students);
+        $year = 2019;
+        $semester_reg = 'PRIMERO';
+        $type_id = session('id');//sesion que salvo el proyecto :p
+        $work = Work::create(['title'=>$title,'status'=>$status,'start_date'=>$start_date,'finish_date'=>$finish_date,'name_ext_org'=>$name_ext_org,'tutor_ext_org'=>$tutor_ext_org,'cant_students'=>$cant_students,'year'=>$year,'semester_reg'=>$semester_reg,'type_id'=>$type_id]);
         
-        return '';
+        $academics =$request->academics;
+        foreach($academics as $academic){
+            $work->academics()->attach($academic);
+            DB::table('academic_work')->where('work_id',$work->id)->update(['academic_role'=>'GUIA']);
+            $work->save();
+        }
+        $students = $request->students;
+        foreach($students as $id){
+            $student =Student::find($id);
+            $student->work_id = $work->id;
+            $student->save();
+        }
+
+        //dd($students,$academics);
+        //$work->students()->sync($request->students);
+        //$work->academics()->sync($request->academics);
+
+        return $request;
     }
 
     /**
@@ -88,11 +98,13 @@ class WorkController extends Controller
     public function show($id)
     {
         $work=Work::find($id);
-        $types = Type::orderBy('id','ASC')->get();
-        $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
-        //dd($types); //funcionara para revisar los datos de la bd
-        return view('admin.works.show',compact('work','types','students','academics'));
+        $types=DB::table('types')->where('id',$work->type_id)->get('activity_name');
+       // $academics=DB::table('academic_work')->where('work_id',$id)->where(function($query){
+         //   $query->select(DB::raw('name'))->from('academics')->whereRaw('academics.id = academic_work.academic_id');
+
+        //});
+        $students = DB::table('students')->where('work_id',$id)->get('name');
+        return view('admin.works.show',compact('work','types','students'));
     }
 
     /**

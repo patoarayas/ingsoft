@@ -10,17 +10,14 @@ class Work extends Model
     protected $fillable = ['title','status','start_date','finish_date',
                            'name_ext_org','tutor_ext_org','cant_students',
                            'year_reg','semester_reg','graduation_date',
-                           'grade','curricular_code' ];
+                           'grade','curricular_code','type_id'];
 
      // Atributos por default
     protected $attributes = [
                     'status'=>'INGRESADA',
                     'cant_students'=>0,
-                    'year_reg'=>1992,
-                    'semester_reg'=>'PRIMERO',
-
-
-
+                    'year_reg'=>'2019',
+                    'semester_reg'=>'SEGUNDO',
     ];
     /**
      * Un trabajo pertenece a muchos estudiantes
