@@ -40,7 +40,8 @@ class Work extends Model
      *  Un trabajo pertenece a muchos academicos
      */
     public function academics(){
-        return $this->belongsToMany(Academic::class);
+        return $this->belongsToMany(Academic::class)->withPivot('academic_role')
+    	->withTimestamps();
     }
 
 }

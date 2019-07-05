@@ -80,7 +80,6 @@ class Work3Controller extends Controller
     public function update(Request $request, $id)
     {
         $work=Work::find($id);
-        $work->grade = strval($request->grade);
         $work->graduation_date = strval($request->graduation_date);
         $work->status = 'FINALIZADA';
         $work->save();
