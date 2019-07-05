@@ -43,7 +43,7 @@
                                     @if($work->status == 'INGRESADA' and auth()->user()->role == 'TITULACION')
                                      <!-- Autorizr-->
                                         <td with="10px">
-                                            <a role="button" href="'works.cancelwork',($work,$work->id))" class = "btn btn-primary">Autorizar</a>
+                                            <a role="button" href="{{route('worksAcademics.edit',$work->id)}}"class = "btn btn-primary">Autorizar</a>
                                         </td >
                                     @endif
 

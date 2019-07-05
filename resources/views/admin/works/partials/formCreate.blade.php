@@ -9,15 +9,15 @@
     {{Form::label('type_id','Seleccione el Tipo de Actividad')}}
         <select class="form-control" name="type_id" id="type_id" onChange="hide()">
             @foreach($types as $type)
-                <option value="{{$type->id}}" id="{{$type->max_students}}" title = "{{$type->req_external_org}}">{{$type->activity_name}}</option>
+                <option value="{{$type->req_external_org}}" id="{{$type->max_students}}" title = "{{$type->activity_name}}">{{$type->activity_name}}
+                {{session(['id'=>$type->id])}}
+                </option>
             @endforeach
         </select>
-        
+
 </div>
 
 <br>
-
-
 
 <div class="form-group">
     <script>
@@ -47,7 +47,7 @@
 
 	<div class="table-responsive-sm">
 		<strong>{{ Form::label('students', 'Seleccionar Estudiante(s), ingrese el rut o seleccione dentro de la lista') }}</strong> <br>
-            
+
         <div class="btn-group btn-sm" role="group" aria-label="Basic example">
             <!--<a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">
                                 Registrar Estudiante
@@ -70,20 +70,21 @@
                             <tr>
                                 <td>{{ $student->rut}}</td>
                                 <td>{{ $student->name}}</td>
+
                                 <td width="10px">
-                                <input name="students" id="students" type="checkbox" value="{{$student->id}}" onclick="return myFun()"></td>
+                                <input name="students[]" id="students" type="checkbox" value="{{$student->id}}" onclick="return myFun()"></td>
                             </tr>
                         @endforeach
                     </tbody>
             </table>
-        </div> 
+        </div>
 
         <div class="btn btn-primary  float-right">
              <a href="{{route('students.create') }}" class="btn btn-sm btn-primary">
                                 Registrar Estudiante
             </a>
-        </div>   
-    </div>      
+        </div>
+    </div>
 </div>
 
 <br>
@@ -114,7 +115,7 @@
 	<div class="table-responsive-sm">
 		<strong>{{ Form::label('academics', 'Seleccionar Profesor(es) Guía(s) (*) ') }}</strong><br>
         <div class="btn-group btn-sm" role="group" aria-label="Basic example">
-            
+
             <input class="form-control" type="text" size="25"
             placeholder="Ingrese el rut del academico " id="myInput_1" onkeyup="myFunction()">
         </div>
@@ -144,7 +145,7 @@
              Registrar Academico <!-- modificar hreff con academics.create proxima iteracion-->
             </a>
      </div>
-        
+
 </div>
 
 <br>
@@ -171,13 +172,14 @@
     {{Form::text('name_ext_org',null,['class' => 'form-control','id'=>'name_ext_org'])}}
 
     <strong>{{Form::label('tutor_ext_org','Tutor(*): ')}}</strong>
-    {{Form::text('tutor_ext_org',null,['class' => 'form-control','id'=>'tutor_ext_org','value'=>''])}}      
+    {{Form::text('tutor_ext_org',null,['class' => 'form-control','id'=>'tutor_ext_org','value'=>''])}}
 </div>
 
 <br>
 
 <div class="form-group text-center">
     {{
+
       Form::submit('Guardar Datos',['class'=>'btn btn-success'])
     }}
 </div>
@@ -186,19 +188,26 @@
     function hide(){
         var opciones = document.getElementById('type_id').options;
         var seleccion = document.getElementById('type_id').selectedIndex;
+
         var div = document.getElementById('organization');
-        var valor = opciones[seleccion].getAttribute('title');
-        var input =document.getElementById('id_type');
-        input.value = document.getElementById('type_id').textContent;
-        
-        
-        if(valor == true){
+        var valor = opciones[seleccion].value;
+
+        /*https://stackoverflow.com/questions/34536886/how-can-i-set-a-session-var-using-javascript-and-get-it-via-php-code/34536907
+        $.ajax({
+                    type: 'POST',
+                    url: '/set_session',
+                    data: "wena wena"
+                })*/
+
+
+
+        if(valor==true){
 
             div.style="";
         }
         else{
             div.style="display:none;";
-        } 
+        }
     }
 </script>
 
@@ -217,7 +226,7 @@
 <script>
 
     function myFun(){
-            var a = document.getElementsByName('students');
+            var a = document.getElementsByName('students[]');
             var limit= limite();
             var newvar = 0;
             var count;
