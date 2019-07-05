@@ -21,7 +21,7 @@
 
 <div class="form-group">
     <script>
-            function myFunction() {
+            function myFunction2() {
             var input, filter, table, tr, td, i;
             input = document.getElementById("myInput");
             filter = input.value.toUpperCase();
@@ -53,7 +53,7 @@
                                 Registrar Estudiante
             </a> -->
             <input class="form-control" type="text" size="25"
-            placeholder="Ingrese el rut del estudiante " id="myInput" onkeyup="myFunction()">
+            placeholder="Ingrese el rut del estudiante " id="myInput" onkeyup="myFunction2()">
         </div>
 
         <div style="width: 500px; height: 250px; overflow-y: scroll;">
