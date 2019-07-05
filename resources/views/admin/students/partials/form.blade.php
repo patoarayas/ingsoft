@@ -1,20 +1,20 @@
 <div class="form-group">
 
-    {{ Form::label('name','NOMBRE')}}   
+    {{ Form::label('name','NOMBRE')}}
     {{ Form::text('name',null, ['class'=>'form-control','id' =>'name']) }}
     <br>
     {{ Form::label('rut','RUT')}}
     {{ Form::text('rut',$rutSinGuion,['class'=>'form-control','id'=>'rut' ,'readonly', 'name'=>'rut','value'=>'$rutSinGuion','placeholder'=>'$rutSinGuion'])}}
     <br>
-    {{ Form::label('email','E-MAIL')}}   
-    {{ Form::text('email',$student->email, ['class'=>'form-control','id' =>'email']) }}
+    {{ Form::label('email','E-MAIL')}}
+    {{ Form::email('email',$student->email, ['class'=>'form-control','id' =>'email']) }}
     <br>
-    {{ Form::label('phone','TELÉFONO')}}   
-    {{ Form::text('phone',$student->phone, ['class'=>'form-control','id' =>'phone']) }}
+    {{ Form::label('phone','TELÉFONO')}}
+    {{ Form::number('phone',$student->phone, ['class'=>'form-control','id' =>'phone']) }}
     <br>
-    {{ Form::label('label-careers','CARRERAS')}} 
-    <br>  
-    
+    {{ Form::label('label-careers','CARRERAS')}}
+    <br>
+
 </div>
 
 <div class="form-group">
@@ -39,9 +39,3 @@
       Form::submit('Guardar Datos',['class'=>'btn btn-success'])
     }}
 </div>
-
-
-
-
-
-
