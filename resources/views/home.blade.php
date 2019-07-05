@@ -21,12 +21,12 @@
                       <a href ="{{route('works.index')}}" class="btn btn-primary btn-medium btn-block">Administrar Actividad De Titulación</a>
                       <a href ="{{route('works2.index')}}" class="btn btn-primary btn-medium btn-block">Registrar Inscripción Formal</a>
                       <a href ="{{route('works3.index')}}" class="btn btn-primary btn-medium btn-block">Registrar Examen de Título</a>
-                      
-                      <a href ="{{route('worksAcademics.index')}}" class="btn btn-primary btn-medium btn-block">Autorizar actividad de Titulación</a>
-                    
-                    
-                        
-                      
+
+                      <!--<a href ="{{route('worksAcademics.index')}}" class="btn btn-primary btn-medium btn-block">Autorizar actividad de Titulación</a>-->
+
+
+
+
                       <button type="button" class="btn btn-primary btn-medium btn-block">Consultar Actividades De Titulación Vigentes</button>
 
                     @else<!-- solo queda academico-->
