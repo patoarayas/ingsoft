@@ -1,5 +1,12 @@
 <?php
-
+/*Controlador Administrar trabajos
+*   Muestra todos los trabajos
+*   Crear un trabajo
+*   Muestra un trabajo en especifico
+*
+*
+*
+*/
 namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -155,11 +162,13 @@ class WorkController extends Controller
         return view('admin.works.asignarComision',compact('work','academics'));
     }
 
-    public function cancelwork($id)
+    public function anular($id)
     {
-        $work=Work::find($id);
-        $work->status='ANULADA';
-        $work->save();
-        return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación ANULADA correctamente');
+        //NO funciona la ruta se usa edit de work1
+        dd("hola");
+
+        Work::find($id)->fill(array('status'=>'ANULADA'))->save();
+        return  redirect()->route('works.index')->with('info','Actividad de titulación ANULADA correctamente');
+
     }
 }
