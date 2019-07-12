@@ -1,5 +1,5 @@
 <div class="form-group">
-    {{ Form::label('activity_name','Nombre Del Tipo De Actividad')}}
+{{ Form::label('activity_name','Nombre Del Tipo De Actividad')}}  
     {{  Form::text('activity_name',null, ['class'=>'form-control','id' =>'activity_name']) }}
 
     {{ Form::label('max_students','Cantidad De Estudiantes Permitidos')}}
@@ -10,7 +10,7 @@
 
     {{ Form::label('req_external_org','Requiere Organización Externa')}}
     {{ Form::select('req_external_org',[1=>'SI',0=>'NO'],null,['class'=>'form-control','id'=>'req_external_org']) }}
-
+    
     
 
 </div>

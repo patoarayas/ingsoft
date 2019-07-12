@@ -6,14 +6,15 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
-                <a href ="{{route('home')}}"class="btn btn-primary float-left">Volver</a>
+                    <a href ="{{route('home')}}"class="btn btn-primary float-left">Volver</a>
                     TIPOS DE ACTIVIDAD DE TITULACIÓN
                     <a href ="{{route('types.create' )}}"class="btn btn-success float-right">CREAR TIPO DE ACTIVIDAD</a>
                 </div>
+
+                
                 <div class ="card-body text-center">
                     <table class = "table table-striped table-hover" >
                         <thead>
-                            
                             <tr>
                                 <th with = "10px">ID</th>
                                 <th>Nombre</th>
@@ -37,7 +38,7 @@
                                     <form action="{{ route('types.destroy', $type->id) }}" method="POST">
                                         {{ method_field('delete') }}
                                         {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" onclick ="return ConfirmDelete()" class="btn btn-danger" class="btn btn-danger">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
@@ -50,4 +51,11 @@
         </div>
     </div>
 </div>
+
+<script type = "text/javascript">
+    function ConfirmDelete(){
+        var answer = confirm("¿Deseas eliminar este tipo de actividad?")
+        return answer;
+    }
+</script>
 @endsection

@@ -63,6 +63,7 @@ class TypeController extends Controller
     public function show($id)
     {
         $type=Type::find($id);
+        
         return view('admin.types.show',compact('type'));
     }
 

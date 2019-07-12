@@ -15,7 +15,7 @@ class WorksTableSeeder extends Seeder
             Rellena la tabla WORKS con 20 elementos segun el Factory
          */
         factory(App\Work::class,20)->create()->each(function(App\Work $work){
-            $work->types();
+            $work->type();
         });
         
     }

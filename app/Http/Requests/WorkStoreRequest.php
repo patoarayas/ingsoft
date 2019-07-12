@@ -35,6 +35,7 @@ class WorkStoreRequest extends FormRequest
         'semester_reg'=>'nullable',
         'graduation_date'=>'nullable',
         'grade'=>'nullable',
-        'curricular_code'=>'nullable'];
+        'curricular_code'=>'nullable',
+        ];
     }
 }

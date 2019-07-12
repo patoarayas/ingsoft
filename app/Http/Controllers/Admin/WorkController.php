@@ -1,18 +1,26 @@
 <?php
-
+/*Controlador Administrar trabajos
+*   Muestra todos los trabajos
+*   Crear un trabajo
+*   Muestra un trabajo en especifico
+*
+*
+*
+*/
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Work;
 use App\Type;
 use App\Student;
 use App\Academic;
+use App\AcademicWork;
 use App\Http\Requests\WorkStoreRequest;
 use App\Http\Requests\WorkUpdateRequest;
+use Carbon\Carbon;
 class WorkController extends Controller
 {
-
 
     /* security verification */
     public function __construct(){
@@ -32,7 +40,6 @@ class WorkController extends Controller
         //dd($types); //funcionara para revisar los datos de la bd
         return view('admin.works.index', compact('works','types','students','academics'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -56,19 +63,81 @@ class WorkController extends Controller
      */
     public function store(WorkStoreRequest $request)
     {
-        // Cambios
-        $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
-        $types = Type::orderBy('id','ASC')->get();
 
-        //Fin Cambios
+        $title = $request->title;
+        $status = 'INGRESADA';
+        $start_date=$request->start_date;
+        $finish_date=$request->finish_date;
+        $name_ext_org=$request->name_ext_org;
+        $tutor_ext_org=$request->tutor_ext_org;
+        $cant_students = sizeof($request->students);
+        $semester_reg = '';
+        $academics =$request->academics;
+        $students = $request->students;
+        $type_id = session('id');//sesion que salvo el proyecto :p
 
-        $work = Work::create($request->all());
-        // Mas cambios
-        dd($work);
-        $type = Type::find($work_id);
-        //Mas cambios
-        return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación creada correctamente');
+
+        $list = Carbon::parse($start_date);
+        $month =$list->month;
+        $year = $list->year;
+        $day = $list->day;
+
+        $list2 =Carbon::parse($finish_date);
+        $month2 =$list2->month;
+        $year2 = $list2->year;
+        $day2 = $list2->day;
+
+        if($year2<$year){
+            return redirect()->route('works.create')->with('info','¡ Año de termino menor que Año de inicio !');
+        }
+
+        else{
+            if(($month2<$month) and ($year2 == $year) ){
+                return redirect()->route('works.create')->with('info','¡ Mes de termino menor que Mes de inicio !');
+            }
+            else{
+                if(($day2<$day) and($month2==$month) ){
+                    return redirect()->route('works.create')->with('info','¡ Dia de termino menor que Dia de inicio !');
+                }
+            }
+        }
+
+        if($month <7){
+            $semester_reg='PRIMERO';
+        }
+        else{
+            $semester_reg='SEGUNDO';
+        }
+
+        if(sizeof($students)==0){
+            return redirect()->route('works.create')->with('info','¡ Debe seleccionar al menos 1 estudiante !');
+        }
+
+        if(sizeof($academics)==0){
+            return redirect()->route('works.create')->with('info','¡ Debe seleccionar al menos 1 academico como profesor guia !');
+        }
+
+        $work = Work::create(['title'=>$title,'status'=>$status,'start_date'=>$start_date,'finish_date'=>$finish_date,'name_ext_org'=>$name_ext_org,'tutor_ext_org'=>$tutor_ext_org,'cant_students'=>$cant_students,'year'=>$year,'semester_reg'=>$semester_reg,'type_id'=>$type_id]);
+
+
+
+        foreach($academics as $academic){
+            $work->academics()->attach($academic);
+            $name_academic = Academic::find($academic)->get('name');
+
+            DB::table('academic_work')->where('work_id',$work->id)->update(['academic_role'=>'GUIA']);
+            $work->save();
+        }
+        $students = $request->students;
+        foreach($students as $id){
+            $student =Student::find($id);
+            $student->work_id = $work->id;
+            $student->save();
+        }
+
+        return redirect()->route('works.index')->with('info','Actividad Creada Con Éxito');
+
+
     }
 
     /**
@@ -80,10 +149,9 @@ class WorkController extends Controller
     public function show($id)
     {
         $work=Work::find($id);
-        $types = Type::orderBy('id','ASC')->get();
-        $students = Student::orderBy('id','ASC')->get();
-        $academics = Academic::orderBy('id','ASC')->get();
-        //dd($types); //funcionara para revisar los datos de la bd
+        $types=DB::table('types')->where('id',$work->type_id)->get('activity_name');
+        $academics= $work->academics();
+        $students = DB::table('students')->where('work_id',$id)->get('name');
         return view('admin.works.show',compact('work','types','students','academics'));
     }
 
@@ -133,5 +201,15 @@ class WorkController extends Controller
         $work=Work::find($id);
         $academics = Academic::orderBy('id','ASC')->get();
         return view('admin.works.asignarComision',compact('work','academics'));
+    }
+
+    public function anular($id)
+    {
+        //NO funciona la ruta se usa edit de work1
+        dd("hola");
+
+        Work::find($id)->fill(array('status'=>'ANULADA'))->save();
+        return  redirect()->route('works.index')->with('info','Actividad de titulación ANULADA correctamente');
+
     }
 }
