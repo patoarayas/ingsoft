@@ -6,22 +6,29 @@
 
 <div class="form-group">
 
+    <!-- Este div guarda los datos de los tipos bajo el id "type_select" -->
+    <div hidden class="form-group">
+            <select class="form-control" name="type_select" id="type_select" >
+                @foreach($types as $type)
+                    <option value="{{$type->req_external_org}}" id="{{$type->max_students}}" title = "{{$type->activity_name}}">{{$type->activity_name}}
+                    {{session(['id'=>$type->id])}}
+                    </option>
+                @endforeach
+            </select>
+    </div>
+    <!-- Este es el verdadero form -->
     {{Form::label('type_id','Seleccione el Tipo de Actividad')}}
-        <select class="form-control" name="type_id" id="type_id" onChange="hide()">
-            @foreach($types as $type)
-                <option value="{{$type->req_external_org}}" id="{{$type->max_students}}" title = "{{$type->activity_name}}">{{$type->activity_name}}
-                {{session(['id'=>$type->id])}}
-                </option>
-            @endforeach
-        </select>
+    {{Form:: select('type_id',$types->pluck('activity_name','id'),null,['id'=>'type_id','class'=>'form-control','onChange'=>'hide()'])}}
+
 
 </div>
 
-<br>
 
+<br>
 <div class="form-group">
     <script>
-            function myFunction2() {
+            function filtrarEstudiantePorRut() {
+            // Permite buscar por rut
             var input, filter, table, tr, td, i;
             input = document.getElementById("myInput");
             filter = input.value.toUpperCase();
@@ -53,7 +60,7 @@
                                 Registrar Estudiante
             </a> -->
             <input class="form-control" type="text" size="25"
-            placeholder="Ingrese el rut del estudiante " id="myInput" onkeyup="myFunction2()">
+            placeholder="Ingrese el rut del estudiante " id="myInput" onkeyup="filtrarEstudiantePorRut()">
         </div>
 
         <div style="width: 500px; height: 250px; overflow-y: scroll;">
@@ -71,7 +78,7 @@
                                 <td>{{ $student->rut}}</td>
                                 <td>{{ $student->name}}</td>
 
-                                <td width="10px">
+                                <td width="50px">
                                 <input name="students[]" id="students" type="checkbox" value="{{$student->id}}" onclick="return myFun()"></td>
                             </tr>
                         @endforeach
@@ -92,7 +99,7 @@
 <div class="form-group">
 
     <script>
-        function myFunction() {
+        function filtrarAcademicoPorRut() {
         var input, filter, table, tr, td, i;
         input = document.getElementById("myInput_1");
         filter = input.value.toUpperCase();
@@ -117,7 +124,7 @@
         <div class="btn-group btn-sm" role="group" aria-label="Basic example">
 
             <input class="form-control" type="text" size="25"
-            placeholder="Ingrese el rut del academico " id="myInput_1" onkeyup="myFunction()">
+            placeholder="Ingrese el rut del academico " id="myInput_1" onkeyup="filtrarAcademicoPorRut()">
         </div>
 		<div style="width: 500px; height: 250px; overflow-y: scroll;">
 		<table class="table table-sm"id="myTable_1">
@@ -133,7 +140,7 @@
                         <tr>
                             <td>{{ $academic->rut}}</td>
                             <td>{{ $academic->name}}</td>
-                            <td width="10px"><label>{{ Form::checkbox('academics[]', $academic->id) }}
+                            <td width="50px"><label>{{ Form::checkbox('academics[]', $academic->id) }}
                             </label></td>
                         </tr>
                     @endforeach
@@ -154,7 +161,7 @@
 <div class="form-group">
     <strong>{{Form::label('start_date', 'Fecha de Inicio: ')}}</strong>
     <br>
-    <input class ='form-control' type = 'date' id='start_date' name='start_date'>
+    <input class ='form-control' type = 'date' id='start_date' name='start_date' onchange="setFechaMinima()">
 </div>
 
 <br>
@@ -162,7 +169,7 @@
 <div class="form-group">
     <strong>{{Form::label('finish_date', 'Fecha de Término: ')}}</strong>
     <br>
-    <input class ='form-control' type = 'date' id='finish_date' name='finish_date'>
+    <input class ='form-control' type = 'date' id='finish_date' name='finish_date' >
 </div>
 
 
@@ -186,20 +193,15 @@
 
 <script>
     function hide(){
-        var opciones = document.getElementById('type_id').options;
+        // Esta funcion ve si la actividad requiere de organizacion ext y despliega
+        // los campos necesarios para rellenarla
+        var opciones = document.getElementById('type_select').options;
+
         var seleccion = document.getElementById('type_id').selectedIndex;
 
         var div = document.getElementById('organization');
+
         var valor = opciones[seleccion].value;
-
-        /*https://stackoverflow.com/questions/34536886/how-can-i-set-a-session-var-using-javascript-and-get-it-via-php-code/34536907
-        $.ajax({
-                    type: 'POST',
-                    url: '/set_session',
-                    data: "wena wena"
-                })*/
-
-
 
         if(valor==true){
 
@@ -214,10 +216,14 @@
 <script>
 
     function limite(){
-        var opciones = document.getElementById('type_id').options;
+        // Esta funcion retorna la cantidad max de alumnos permitidos
+        var opciones = document.getElementById('type_select').options;
+
         var seleccion = document.getElementById('type_id').selectedIndex;
+
         var limite = opciones[seleccion].id;
 
+        //console.log("El limite de estudiantes es:"+limite);
         return limite;
     }
 
@@ -226,6 +232,7 @@
 <script>
 
     function myFun(){
+            // Esta función controla si la cantidad de alumnos esta dentro de lo permitido
             var a = document.getElementsByName('students[]');
             var limit= limite();
             var newvar = 0;
@@ -245,4 +252,13 @@
             }
         }
 
+</script>
+
+<script>
+    function setFechaMinima(){
+        var start_date = document.getElementById('start_date').value;
+        console.log(start_date);
+        var finish_date = document.getElementById('finish_date');
+        finish_date.min = start_date;
+    }
 </script>

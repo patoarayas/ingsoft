@@ -64,6 +64,7 @@ class WorkController extends Controller
     public function store(WorkStoreRequest $request)
     {
 
+
         $title = $request->title;
         $status = 'INGRESADA';
         $start_date=$request->start_date;
@@ -74,7 +75,7 @@ class WorkController extends Controller
         $semester_reg = '';
         $academics =$request->academics;
         $students = $request->students;
-        $type_id = session('id');//sesion que salvo el proyecto :p
+        $type_id = $request->type_id;
 
 
         $list = Carbon::parse($start_date);
