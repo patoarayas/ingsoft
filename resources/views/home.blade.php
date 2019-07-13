@@ -24,9 +24,6 @@
 
                       <!--<a href ="{{route('worksAcademics.index')}}" class="btn btn-primary btn-medium btn-block">Autorizar actividad de Titulación</a>-->
 
-
-
-
                       <button type="button" class="btn btn-primary btn-medium btn-block">Consultar Actividades De Titulación Vigentes</button>
 
                     @else<!-- solo queda academico-->

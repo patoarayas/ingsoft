@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Work;
@@ -46,16 +47,36 @@ class WorkAcademicsController extends Controller{
     {
         $work=Work::find($id);
         if($request->name1==$request->name2 || $request->name1==$request->name3 || $request->name2==$request->name3){
-            return  redirect()->route('worksAcademics.index')->with('info','No se puede ingresar dos o más veces al mismo académico');
+            return  redirect()->route('worksAcademics.edit',$id)->with('info','No se puede ingresar dos o más veces al mismo académico');
         }
+
+        if($request->name1=="" || $request->name2=="" || $request->name3==""){
+            return  redirect()->route('worksAcademics.edit',$id)->with('info','Seleccione 3 académicos');
+        }
+
+        if($request->academic_role1==null || $request->academic_role2==null || $request->academic_role3==null){
+         return  redirect()->route('worksAcademics.edit',$id)->with('info','No deje espacios vacíos');
+        }
+
+        $id1= intval($request->name1)+1; //le sumo 1 para que tome el id del academico , ya que el select parte de 0 
+        $id2= intval($request->name2)+1;
+        $id3= intval($request->name3)+1;
+         
         $work->status = 'ACEPTADA';
 
+        DB::table('academic_work')->insert(
+          ['work_id' => $id, 'academic_id'=>$id1,'academic_role' =>$request->academic_role1]
+        );
 
-        $work->academics()->attach(Academic::where('name', $request->name1)->get(), ['academic_role' => $request->academic_role1]);
+        DB::table('academic_work')->insert(
+            ['work_id' => $id, 'academic_id'=>$id2,'academic_role' =>$request->academic_role2]
+          );
 
-        $work->academics()->attach(Academic::where('name', $request->name2)->get(), ['academic_role' => $request->academic_role2]);
-        $work->academics()->attach(Academic::where('name', $request->name3)->get(), ['academic_role' => $request->academic_role3]);
+        DB::table('academic_work')->insert(
+            ['work_id' => $id, 'academic_id'=>$id3,'academic_role' =>$request->academic_role3]
+        );
         $work->save();
         return  redirect()->route('works.index')->with('info','Actividad de titulación autorizada correctamente');
+         
     }
 }
