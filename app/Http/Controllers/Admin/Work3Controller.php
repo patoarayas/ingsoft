@@ -80,8 +80,6 @@ class Work3Controller extends Controller
     public function update(Request $request, $id)
     {
         $work=Work::find($id);
-        
-
         if($request->graduation_date == null || $request->grade == null){
             return  redirect()->route('works3.edit',$work->id)->with('info','No deje espacios en blanco');
         }
