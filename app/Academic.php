@@ -12,7 +12,7 @@ class Academic extends Model
     * Un academico tiene muchos trabajos asociados
     */
     public function works(){
-        return $this->belongsToMany(Work::class)->withPivot('academic_role')
+        return $this->belongsToMany('App\Work')->withPivot('academic_role')
     	->withTimestamps();;
     }
 

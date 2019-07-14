@@ -1,3 +1,5 @@
+
+<!-- Este es el form usado para crear el trabajo -->
 <div class="form-group">
     {{Form::label('title', 'Título')}}
     {{Form::text('title',null,['class' => 'form-control','id'=>'title'])}}

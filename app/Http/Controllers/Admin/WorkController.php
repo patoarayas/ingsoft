@@ -169,7 +169,9 @@ class WorkController extends Controller
         $students = Student::orderBy('id','ASC')->get();
         $academics = Academic::orderBy('id','ASC')->get();
         $types = Type::orderBy('id','ASC')->get();
-        return view('admin.works.edit',compact('work','types','students','academics','works'));
+        $type = Type::find($work->type_id);
+
+        return view('admin.works.edit',compact('work','type','types','students','academics','works'));
     }
 
     /**
