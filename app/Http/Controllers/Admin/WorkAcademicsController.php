@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Work;
@@ -53,7 +54,7 @@ class WorkAcademicsController extends Controller{
         $work=Work::find($id);
 
         if($request->name1==$request->name2 || $request->name1==$request->name3 || $request->name2==$request->name3){
-            return  redirect()->route('worksAcademics.index')->with('info','No se puede ingresar dos o más veces al mismo académico');
+            return  redirect()->route('worksAcademics.edit',$id)->with('info','No se puede ingresar dos o más veces al mismo académico');
         }
 
         $work->status = 'ACEPTADA';
@@ -65,5 +66,6 @@ class WorkAcademicsController extends Controller{
         $work->save();
 
         return  redirect()->route('works.index')->with('info','Actividad de titulación autorizada correctamente');
+
     }
 }

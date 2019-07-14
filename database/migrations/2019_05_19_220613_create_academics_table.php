@@ -16,7 +16,7 @@ class CreateAcademicsTable extends Migration
         Schema::create('academics', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('rut',9)->unique();
+            $table->string('rut',128)->unique();
             $table->string('name',128);
             $table->string('email',128)->unique();
 

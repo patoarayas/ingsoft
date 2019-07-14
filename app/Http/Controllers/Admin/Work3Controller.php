@@ -80,12 +80,17 @@ class Work3Controller extends Controller
     public function update(Request $request, $id)
     {
         $work=Work::find($id);
+        if($request->graduation_date == null || $request->grade == null){
+            return  redirect()->route('works3.edit',$work->id)->with('info','No deje espacios en blanco');
+        }
         
         $work->graduation_date = strval($request->graduation_date);
+        $work->grade = $request->grade;
         $work->status = 'FINALIZADA';
         $work->save();
         //return back()->with('info','Código Curricular Añadido Correctamente');
         return  redirect()->route('works3.index',$work->id)->with('info','Actividad de titulación actualizada correctamente');
+    
     }
     /**
      * Remove the specified resource from storage.
