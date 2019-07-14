@@ -75,7 +75,7 @@ class StudentController extends Controller
             return redirect()->route('students.create')->with('info','¡ Debe seleccionar al menos 1 carrera !');
         }
       
-        $student = Student::create( $request->all() );
+        $student = Student::create($request->all() );
         $rut = $student->rut;
 
         $student->rut = strval(Rut::parse($rut)->number()).strval(Rut::parse($rut)->vn());

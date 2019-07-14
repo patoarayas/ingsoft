@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('type', 'HomeController@type')->name('type');
 Route::get('work', 'HomeController@work')->name('work');
 Route::get('student','HomeController@student')->name('student');
+Route::get('academic','HomeController@academic')->name('academic');
 
 Route::get('Admin\WorkController@cancelwork{id}');
 
@@ -36,6 +37,7 @@ Route::get('Admin\WorkController@cancelwork{id}');
 Route::resource('types','Admin\TypeController');
 Route::resource('works','Admin\WorkController');
 Route::resource('students','Admin\StudentController');
+Route::resource('academics','Admin\AcademicController');
 
 //estos los agregue y funcionan (?) nose como pero lo hacen xD
 Route::resource('works1','Admin\Work1Controller');
