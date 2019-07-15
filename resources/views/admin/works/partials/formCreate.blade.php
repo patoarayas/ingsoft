@@ -1,11 +1,13 @@
 
 <!-- Este es el form usado para crear el trabajo -->
+
+<!-- TITULO -->
 <div class="form-group">
     {{Form::label('title', 'Título')}}
     {{Form::text('title',null,['class' => 'form-control','id'=>'title'])}}
 </div>
 
-
+<!-- TIPO DE ACTIVIDAD -->
 <div class="form-group">
 
     <!-- Este div guarda los datos de los tipos bajo el id "type_select" -->
@@ -22,33 +24,12 @@
     {{Form::label('type_id','Seleccione el Tipo de Actividad')}}
     {{Form:: select('type_id',$types->pluck('activity_name','id'),null,['id'=>'type_id','class'=>'form-control','onChange'=>'hide()'])}}
 
-
 </div>
-
-
 <br>
+
+<!-- SELECCIONAR ESTUDIANTES -->
 <div class="form-group">
-    <script>
-            function filtrarEstudiantePorRut() {
-            // Permite buscar por rut
-            var input, filter, table, tr, td, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                            }
-                        }
-                    }
-            }
-    </script>
+
 
     <div>
         <span id="notvalid" style="color:red"></span>
@@ -58,9 +39,7 @@
 		<strong>{{ Form::label('students', 'Seleccionar Estudiante(s), ingrese el rut o seleccione dentro de la lista') }}</strong> <br>
 
         <div class="btn-group btn-sm" role="group" aria-label="Basic example">
-            <!--<a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">
-                                Registrar Estudiante
-            </a> -->
+
             <input class="form-control" type="text" size="25"
             placeholder="Ingrese el rut del estudiante " id="myInput" onkeyup="filtrarEstudiantePorRut()">
         </div>
@@ -88,6 +67,7 @@
             </table>
         </div>
 
+        <br>
         <div class="btn btn-primary  float-right">
              <a href="{{route('students.create') }}" class="btn btn-sm btn-primary">
                                 Registrar Estudiante
@@ -95,31 +75,10 @@
         </div>
     </div>
 </div>
-
 <br>
 
+<!-- SELECCIONAR ACADEMICOS GUIAS -->
 <div class="form-group">
-
-    <script>
-        function filtrarAcademicoPorRut() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput_1");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable_1");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                        }
-                    }
-                }
-        }
-    </script>
 
     <div>
         <span id="notvalid2" style="color:red"></span>
@@ -128,10 +87,10 @@
 	<div class="table-responsive-sm">
 		<strong>{{ Form::label('academics', 'Seleccionar Profesor(es) Guía(s) (*) ') }}</strong><br>
         <div class="btn-group btn-sm" role="group" aria-label="Basic example">
-
             <input class="form-control" type="text" size="25"
             placeholder="Ingrese el rut del academico " id="myInput_1" onkeyup="filtrarAcademicoPorRut()">
         </div>
+
 		<div style="width: 500px; height: 250px; overflow-y: scroll;">
 		<table class="table table-sm"id="myTable_1">
             <thead>
@@ -153,17 +112,18 @@
                 </tbody>
 		</table>
 	</div>
+    <br>
     <div class="btn btn-primary  float-right">
-             <a href="#" class="btn btn-sm btn-primary">
-             Registrar Academico <!-- modificar hreff con academics.create proxima iteracion-->
+             <a href="{{route('academics.create') }}" class="btn btn-sm btn-primary">
+             Registrar Academico
             </a>
      </div>
 
 </div>
-
 <br>
 <br>
 
+<!-- SELECCIONAR FECHAS DE INICIO Y TERMINO-->
 <div class="form-group">
     <strong>{{Form::label('start_date', 'Fecha de Inicio: ')}}</strong>
     <br>
@@ -178,7 +138,7 @@
     <input class ='form-control' type = 'date' id='finish_date' name='finish_date' >
 </div>
 
-
+<!-- SELECCIONAR ORGANIZACION EXTERNA -->
  <div class="form-group" id = "organization" style="display:none;" name="organization">
 
     <strong>{{Form::label('name_ext_org', 'Nombre Organización Externa: ')}}</strong>
@@ -189,7 +149,7 @@
 </div>
 
 <br>
-
+<!-- Enviar FORM -->
 <div class="form-group text-center">
     {{
 
@@ -197,6 +157,7 @@
     }}
 </div>
 
+<!-- Scripts -->
 <script>
     function hide(){
         // Esta funcion ve si la actividad requiere de organizacion ext y despliega
@@ -217,9 +178,7 @@
             div.style="display:none;";
         }
     }
-</script>
 
-<script>
 
     function limite(){
         // Esta funcion retorna la cantidad max de alumnos permitidos
@@ -233,9 +192,7 @@
         return limite;
     }
 
-</script>
 
-<script>
 
     function checkMaxStudents(){
             // Esta función controla si la cantidad de alumnos esta dentro de lo permitido
@@ -258,8 +215,7 @@
             }
         }
 
-</script>
-<script>
+
     function checkMaxAcademics(){
         var cant = document.getElementsByName('academics[]');
         var cont = 0;
@@ -278,13 +234,51 @@
         }
 
     }
-</script>
 
-<script>
     function setFechaMinima(){
         var start_date = document.getElementById('start_date').value;
         console.log(start_date);
         var finish_date = document.getElementById('finish_date');
         finish_date.min = start_date;
     }
+
+    function filtrarAcademicoPorRut() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput_1");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable_1");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+                    }
+                }
+            }
+    }
+
+    function filtrarEstudiantePorRut() {
+    // Permite buscar por rut
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+                    }
+                }
+            }
+    }
+
 </script>

@@ -1,4 +1,4 @@
-
+<!--Este form permite crear la comisión correctora -->
 {{Form::hidden('max',$max)}}
 <div hidden id= "alert" class= "alert alert-danger">
     <p>"¡No puede seleccionar dos veces el mismo académico!"</p>
