@@ -27,17 +27,18 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $students = Student::orderBy('id','DESC')->get();
         //dd($types); //funcionara para revisar los datos de la bd
         return view('admin.students.index', compact('students'));
     }
-
+/*
     public function index2($quantity_careers,$student)
-    {   
+    {
         $data['quantity_careers'] = $quantity_careers;
         return view('admin.students.create2',$data,compact('student'));
     }
+    */
 
     /**
      * Show the form for creating a new resource.
@@ -46,26 +47,28 @@ class StudentController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.students.create');
     }
 
+    /* ELIMINAR ?
     public function create2(Request $request,$student){
         return "hola bb";
-    }
+    }*/
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentStoreRequest $request)
     {
 
         if($request->name == null or $request->email == null or $request->rut == null){
             return redirect()->route('students.create')->with('info','¡ No deje datos en blanco  !');
         }
-       
+
         $career1 = $request->career1; //cada checkbox y lo comparo con cada carrera, si el checkbox no esta sleccionado sera vacio
         $career2 = $request->career2;
         $career3 = $request->career3;
@@ -74,20 +77,20 @@ class StudentController extends Controller
         if($career1 =="" and $career2 =="" and $career3 =="" and $career4 ==""){
             return redirect()->route('students.create')->with('info','¡ Debe seleccionar al menos 1 carrera !');
         }
-      
+
         $student = Student::create($request->all() );
         $rut = $student->rut;
 
         $student->rut = strval(Rut::parse($rut)->number()).strval(Rut::parse($rut)->vn());
         $student->save();
-       
-                    
+
+
         if (Rut::parse($rut)->quiet()->validate() == false ){//si la validacion es incorrecta borramos el estudiante
             $this->destroy($student->id);
             return redirect()->route('students.create')->with('info','¡ Rut mal ingresado, intente nuevamente !');
         }
-        
-       
+
+
 
         if($career1 == "Ingeniería en Computación e Informática"){
             $student->careers()->attach(1);
@@ -103,8 +106,8 @@ class StudentController extends Controller
         if ($career4 == "Ingeniería Civil en Computación e Informática (Malla-Antigua)"){
             $student->careers()->attach(4);
         }
-        
-        
+
+
         return redirect()->route('students.index')->with('info','¡ Alumno Creado Con exito !');
     }
 
@@ -117,14 +120,14 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::find($id);
-        $careers = $student->careers; //obtengo todos los registros que relacionan estudiante y carrera 
+        $careers = $student->careers; //obtengo todos los registros que relacionan estudiante y carrera
         $rut = $student->rut;
 
         $number = strVal(Rut::parse($rut)->number());
         $vn = strVal(Rut::parse($rut)->vn());
 
         $rutFormateado = Rut::set()->number($number)->vn($vn)->format();
-        
+
         return view('admin.students.show',compact('student','rutFormateado','careers'));
     }
 
@@ -165,7 +168,7 @@ class StudentController extends Controller
         $student->careers()->detach(4);//quitamos las relaciones viejas y para poner las nuevas
         $student->fill($request->all())->save();
 
-        
+
         $career1 = $request->career1; //cada checkbox y lo comparo con cada carrera, si el checkbox no esta sleccionado sera vacio
         $career2 = $request->career2;
         $career3 = $request->career3;
@@ -190,7 +193,7 @@ class StudentController extends Controller
             $student->careers()->attach(4);
         }
         return  redirect()->route('students.index',$student->id)->with('info',' Datos del Rut '.$rutStudent.' actualizado');
-        
+
     }
     /**
      * Remove the specified resource from storage.

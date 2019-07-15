@@ -25,11 +25,11 @@ class StudentStoreRequest extends FormRequest
     {
         return
         [
-            'rut'=>'required|students,rut,cl_rut',
+            'rut'=>'required|unique:students',
             'name'=>'required',
             'email'=>'required|unique:students,email',
             'phone'=>'nullable',
-            'career'=>'nullable',
+            'career'=>'required',
             'work_id'=>'nullable'];
 
 
