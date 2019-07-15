@@ -81,7 +81,7 @@
                                 <td>{{ $student->name}}</td>
 
                                 <td width="50px">
-                                <input name="students[]" id="students" type="checkbox" value="{{$student->id}}" onclick="return myFun()"></td>
+                                <input name="students[]" id="students" type="checkbox" value="{{$student->id}}" onclick="return checkMaxStudents()"></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -121,6 +121,10 @@
         }
     </script>
 
+    <div>
+        <span id="notvalid2" style="color:red"></span>
+    </div>
+
 	<div class="table-responsive-sm">
 		<strong>{{ Form::label('academics', 'Seleccionar Profesor(es) Guía(s) (*) ') }}</strong><br>
         <div class="btn-group btn-sm" role="group" aria-label="Basic example">
@@ -142,7 +146,7 @@
                         <tr>
                             <td>{{ $academic->rut}}</td>
                             <td>{{ $academic->name}}</td>
-                            <td width="50px"><label>{{ Form::checkbox('academics[]', $academic->id) }}
+                            <td width="50px"><label>{{ Form::checkbox('academics[]', $academic->id,null,['onClick'=>'return checkMaxAcademics()'])}}
                             </label></td>
                         </tr>
                     @endforeach
@@ -233,7 +237,7 @@
 
 <script>
 
-    function myFun(){
+    function checkMaxStudents(){
             // Esta función controla si la cantidad de alumnos esta dentro de lo permitido
             var a = document.getElementsByName('students[]');
             var limit= limite();
@@ -254,6 +258,26 @@
             }
         }
 
+</script>
+<script>
+    function checkMaxAcademics(){
+        var cant = document.getElementsByName('academics[]');
+        var cont = 0;
+        for(var i = 0; i<cant.length;i++){
+            if(cant[i].checked){
+                cont++;
+            }
+        }
+        if(cont>2){
+            document.getElementById('notvalid2').innerHTML="Puede seleccionar 2 profesores guias como máximo";
+            return false;
+        }
+        else{
+            document.getElementById('notvalid2').innerHTML= "";
+            return true;
+        }
+
+    }
 </script>
 
 <script>

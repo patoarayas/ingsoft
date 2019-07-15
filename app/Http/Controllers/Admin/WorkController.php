@@ -113,7 +113,7 @@ class WorkController extends Controller
         if(sizeof($students)==0){
             return redirect()->route('works.create')->with('info','¡ Debe seleccionar al menos 1 estudiante !');
         }
-
+        //dd($students);
         if(sizeof($academics)==0){
             return redirect()->route('works.create')->with('info','¡ Debe seleccionar al menos 1 academico como profesor guia !');
         }
