@@ -64,7 +64,7 @@ class WorkController extends Controller
     public function store(WorkStoreRequest $request)
     {
 
-        dd($request);
+        //dd($request);
         $title = $request->title;
         $status = 'INGRESADA';
         $start_date=$request->start_date;
