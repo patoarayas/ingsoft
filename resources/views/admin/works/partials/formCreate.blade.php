@@ -114,7 +114,8 @@
 	</div>
     <br>
     <div class="btn btn-primary  float-right">
-             <a href="{{route('academics.create') }}" class="btn btn-sm btn-primary">
+
+             <a href="{{route('academics.create')}}" class="btn btn-sm btn-primary">
              Registrar Academico
             </a>
      </div>
