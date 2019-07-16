@@ -37,6 +37,39 @@
     @endif
 </div>
 
+<div>
+    <!-- PERMITE MODIFICAR LA COMISION  CORRECTORA -->
+    @if ($work->status == 'ACEPTADA')
+        <p>Comisión correctora:</p>
+
+        <div hidden id= "alert" class= "alert alert-danger">
+            <p>"¡No puede seleccionar dos veces el mismo académico!"</p>
+        </div>
+        <div hidden id= "alert2" class= "alert alert-danger">
+            <p>"¡Solo puede haber 2 profesores guias!"</p>
+        </div>
+        @for ($i=0; $i < 3-$type->req_external_org; $i++)
+            <div class = "form-group">
+            {{ Form::label('name[]','Académico:')}}
+            {{ Form::select('name[]',$academics->pluck('name','id'), $guides[$i]->id, ['class'=>'form-control','id' =>'name'.$i,'onChange'=>'isUnique(this)','placeholder'=>'Seleccione un académico...']) }}
+            {{ Form::select('role[]',['GUIA'=>'GUIA','CORRECTOR'=>'CORRECTOR'],$guides[$i]->pivot->academic_role, ['class'=>'form-control','id' =>'role'.$i,'onChange'=>'checkGuides(this)','placeholder'=>'Seleccione el rol...']) }}
+            </div>
+
+        @endfor
+
+    @endif
+</div>
+
+<div>
+   <!-- Muestra el codigo curricular si la actividad posee uno -->
+    @if ($work->status == 'ACEPTADA' && $work->curricular_code != NULL)
+        {{ Form::label('curricular_code','Codigo curricular')}}
+        {{ Form::text('curricular_code',null,['class'=>'form-control','id'=>'curricular_code','readonly' => 'true']) }}
+    @endif
+
+</div>
+
+<div>
     <!-- ESTE IF NO SE PUEDE ACCEDER -->
     <!-- Muestra fecha de graduacion y nota si la actividad esta FINALIZADA -->
     @if ($work->status == 'FINALIZADA')
@@ -46,13 +79,6 @@
         {{ Form::label('graduation_date','Fecha De Titulacíon')}}
         {{Form::date('graduation_date',null,['class'=>'form-control','id' =>'graduation_date'])}}
     @endif
-
-   <!-- Muestra el codigo curricular si la actividad posee uno -->
-    @if ($work->status == 'ACEPTADA' && $work->curricular_code != NULL)
-        {{ Form::label('curricular_code','Codigo curricular')}}
-        {{ Form::text('curricular_code',null,['class'=>'form-control','id'=>'curricular_code','readonly' => 'true']) }}
-    @endif
-
 </div>
 
 <div class="form-group text-center">
@@ -67,5 +93,53 @@
         console.log(start_date);
         var finish_date = document.getElementById('finish_date');
         finish_date.min = start_date;
+    }
+
+    function isUnique(seleccion){
+
+        if(document.getElementById('alert').hidden == false){
+            document.getElementById('alert').hidden = true;
+        }
+
+        var academicos= [];
+        for(var i=0;i<3;i++){
+            academicos[i] = document.getElementById('name'+i);
+        }
+
+        var coincidencias = academicos.filter(function(item){
+            return item.value == seleccion.value;
+        })
+
+        if(coincidencias.length > 1){
+            document.getElementById('alert').hidden = false;
+            seleccion.value = "";
+        }
+
+
+    }
+
+    function checkGuides(seleccion){
+
+        if(document.getElementById('alert2').hidden == false){
+            document.getElementById('alert2').hidden = true;
+        }
+
+        var roles = [];
+        for (var i = 0; i<3;i++){
+            roles[i] = document.getElementById('role'+i);
+
+        }
+
+        var coincidencias = roles.filter(function(item){
+
+
+            return item.value == seleccion.value;
+        })
+
+        if(coincidencias.length>2){
+            document.getElementById('alert2').hidden = false;
+            seleccion.value = "";
+        }
+
     }
 </script>

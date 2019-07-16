@@ -171,7 +171,11 @@ class WorkController extends Controller
         $types = Type::orderBy('id','ASC')->get();
         $type = Type::find($work->type_id);
 
-        return view('admin.works.edit',compact('work','type','types','students','academics','works'));
+        $guides = $work->academics()->get();
+        //dd($guides[3]->pivot->academic_role);
+
+
+        return view('admin.works.edit',compact('work','type','types','students','academics','works','guides'));
     }
 
     /**
@@ -183,8 +187,20 @@ class WorkController extends Controller
      */
     public function update(WorkUpdateRequest $request, $id)
     {
+        //dd($request->all());
         $work=Work::find($id);
+        $type = Type::find($work->type_id);
+
         $work->fill($request->all())->save();
+
+        //Comision CORRECTORA
+        $work->academics()->detach();
+        for ($i=0; $i < 3 -$type->req_external_org ; $i++) {
+
+            $work->academics()->attach($request->name[$i], ['academic_role' => $request->role[$i]]);
+            
+        }
+
         return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación actualizada correctamente');
     }
 
