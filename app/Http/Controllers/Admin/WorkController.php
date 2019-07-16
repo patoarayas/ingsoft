@@ -191,16 +191,31 @@ class WorkController extends Controller
         $work=Work::find($id);
         $type = Type::find($work->type_id);
 
-        $work->fill($request->all())->save();
+        $cantGuias = 0;
+        $cantMiembros = 0;
+        for ($i=0; $i < 3 -$type->req_external_org ; $i++) {
+            if($request->name[$i] != null){
+                $cantMiembros++;
+            }
+            if($request->role[$i] == 'GUIA'){
+                $cantGuias++;
+            }
+        }
+        if($cantGuias == 0){
+            return  redirect()->route('works.edit',$work->id)->with('info','¡Debe ingresar al menos 1 profesor guia!');
+        }
+        if($cantMiembros == 0){
+            return  redirect()->route('works.edit',$work->id)->with('info','¡Debe ingresar al menos 1 profesor guia!');
+        }
+
 
         //Comision CORRECTORA
         $work->academics()->detach();
         for ($i=0; $i < 3 -$type->req_external_org ; $i++) {
-
             $work->academics()->attach($request->name[$i], ['academic_role' => $request->role[$i]]);
-            
         }
 
+        $work->fill($request->all())->save();
         return  redirect()->route('works.index',$work->id)->with('info','Actividad de titulación actualizada correctamente');
     }
 

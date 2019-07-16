@@ -48,13 +48,21 @@
         <div hidden id= "alert2" class= "alert alert-danger">
             <p>"¡Solo puede haber 2 profesores guias!"</p>
         </div>
-        @for ($i=0; $i < 3-$type->req_external_org; $i++)
-            <div class = "form-group">
-            {{ Form::label('name[]','Académico:')}}
-            {{ Form::select('name[]',$academics->pluck('name','id'), $guides[$i]->id, ['class'=>'form-control','id' =>'name'.$i,'onChange'=>'isUnique(this)','placeholder'=>'Seleccione un académico...']) }}
-            {{ Form::select('role[]',['GUIA'=>'GUIA','CORRECTOR'=>'CORRECTOR'],$guides[$i]->pivot->academic_role, ['class'=>'form-control','id' =>'role'.$i,'onChange'=>'checkGuides(this)','placeholder'=>'Seleccione el rol...']) }}
-            </div>
 
+        @for ($i=0; $i < 3-$type->req_external_org; $i++)
+            @if ($i < $guides->count())
+                <div class = "form-group">
+                {{ Form::label('name[]','Académico:')}}
+                {{ Form::select('name[]',$academics->pluck('name','id'), $guides[$i]->id, ['class'=>'form-control','id' =>'name'.$i,'onChange'=>'isUnique(this)','placeholder'=>'Seleccione un académico...']) }}
+                {{ Form::select('role[]',['GUIA'=>'GUIA','CORRECTOR'=>'CORRECTOR'],$guides[$i]->pivot->academic_role, ['class'=>'form-control','id' =>'role'.$i,'onChange'=>'checkGuides(this)','placeholder'=>'Seleccione el rol...']) }}
+                </div>
+            @else
+                <div class = "form-group">
+                {{ Form::label('name[]','Académico:')}}
+                {{ Form::select('name[]',$academics->pluck('name','id'), null, ['class'=>'form-control','id' =>'name'.$i,'onChange'=>'isUnique(this)','placeholder'=>'Seleccione un académico...']) }}
+                {{ Form::select('role[]',['GUIA'=>'GUIA','CORRECTOR'=>'CORRECTOR'],null, ['class'=>'form-control','id' =>'role'.$i,'onChange'=>'checkGuides(this)','placeholder'=>'Seleccione el rol...']) }}
+                </div>
+            @endif
         @endfor
 
     @endif
@@ -102,7 +110,7 @@
         }
 
         var academicos= [];
-        for(var i=0;i<3;i++){
+        for(var i=0;i<3-{{$type->req_external_org}};i++){
             academicos[i] = document.getElementById('name'+i);
         }
 
@@ -125,7 +133,7 @@
         }
 
         var roles = [];
-        for (var i = 0; i<3;i++){
+        for (var i = 0; i<3-{{$type->req_external_org}};i++){
             roles[i] = document.getElementById('role'+i);
 
         }
