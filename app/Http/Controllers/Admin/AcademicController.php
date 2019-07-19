@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -14,10 +12,8 @@ use App\CareerStudent;
 use App\Http\Requests\AcademicStoreRequest;
 use App\Http\Requests\AcademicUpdateRequest;
 use Freshwork\ChileanBundle\Rut;
-
 class AcademicController extends Controller
 {
-
     /* security verification */
     public function __construct(){
         $this->middleware('auth');
@@ -33,7 +29,6 @@ class AcademicController extends Controller
         //dd($types); //funcionara para revisar los datos de la bd
         return view('admin.academics.index', compact('academics'));
     }
-
     /**
     *public function index2($quantity_careers,$academic)
     *{
@@ -50,7 +45,6 @@ class AcademicController extends Controller
     {
         return view('admin.academics.create');
     }
-
     public function create2(Request $request,$academic){
         return "hola bb";
     }
@@ -62,34 +56,26 @@ class AcademicController extends Controller
      */
     public function store(AcademicStoreRequest $request)
     {
-
         if($request->name == null or $request->email == null or $request->rut == null){
             return redirect()->route('academics.create')->with('info','¡ No deje datos en blanco  !');
         }
-
         $academic = Academic::create( $request->all() );
         $rut = $academic->rut;
-
         $academic->rut = strval(Rut::parse($rut)->number()).strval(Rut::parse($rut)->vn());
         $academic->save();
-
         $userName=$request->name;
         $userEmail = $academic->email;
         $pw = $academic->rut;
         $pw = bcrypt($pw);
-
         DB::table('users')->insert(
             ['name'=>$userName, 'email' => $userEmail, 'password'=>$pw] //el rol es academico por default
           );
-
         if (Rut::parse($rut)->quiet()->validate() == false ){//si la validacion es incorrecta borramos el estudiante
             $this->destroy($academic->id);
             return redirect()->route('academics.create')->with('info','¡ Rut mal ingresado, intente nuevamente !');
         }
-
         return redirect()->route('academics.index')->with('info','¡ Académico Creado Con exito -- Usuario : email ingresado , Contraseña: Rut sin puntos y sin guión !');
     }
-
     /**
      * Display the specified resource.
      *
@@ -101,15 +87,11 @@ class AcademicController extends Controller
         $academic = Academic::find($id);
         $careers = $academic->careers; //obtengo todos los registros que relacionan estudiante y carrera
         $rut = $academic->rut;
-
         $number = strVal(Rut::parse($rut)->number());
         $vn = strVal(Rut::parse($rut)->vn());
-
         $rutFormateado = Rut::set()->number($number)->vn($vn)->format();
-
         return view('admin.academics.show',compact('academic','rutFormateado'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -124,11 +106,9 @@ class AcademicController extends Controller
         $number = strVal(Rut::parse($rutconGuion)->number());
         $vn = strVal(Rut::parse($rutconGuion)->vn());
         $rutSinGuion=$number.$vn;
-
         $rutFormateado = Rut::set()->number($number)->vn($vn)->format();
         return view('admin.academics.edit',compact('academic','id','rutFormateado','rutSinGuion'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -141,10 +121,13 @@ class AcademicController extends Controller
         $academic=Academic::find($id);
         $rutAcademic = $academic->rut;
         $request->rut=$rutAcademic;
+        $newMail = $request->email;
         $academic->fill($request->all())->save();
+        $email = $academic->email;
+
+        DB::table('users')->where('name',$academic->name)->update(array('email' => $newMail));
 
         return  redirect()->route('academics.index',$academic->id)->with('info',' Datos del Rut '.$rutAcademic.' actualizado');
-
     }
     /**
      * Remove the specified resource from storage.
@@ -154,6 +137,11 @@ class AcademicController extends Controller
      */
     public function destroy($id)
     {
+
+       $email = Academic::find($id)->get('email');
+
+       DB::table('users')->where('email',$email)->delete();
+
        Academic::find($id)->delete();
        return back()->with('info','Eliminado correctamente');
     }
