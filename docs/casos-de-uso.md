@@ -6,10 +6,10 @@
     * - [x] **CU012**  *extends*: Modificar
     * - [x] **CU013**  *extends*: Eliminar
 
-- [] **CU020** (SEC/TIT) Administrar acádemicos
+- [x] **CU020** (SEC/TIT) Administrar acádemicos
     * - [x] **CU021** *extends*: Registrar
-    * - [] **CU022** *extends*: Modificar
-    * - [] **CU023** *extends*: Eliminar
+    * - [x] **CU022** *extends*: Modificar
+    * - [x] **CU023** *extends*: Eliminar
 
 - [x] **CU030** (SEC/TIT) Administrar tipo de actividad de titulación
     * - [x] **CU031** *extends*: Crear tipo de actividad de titulación
@@ -23,11 +23,11 @@
 - [x] **CU050** (TIT) Autorizar actividad de titulación
     * - [] **CU021** *include*: Registrar Academico
 
-- [] **CU060** (SEC/TIT) Registrar inscripción formal
+- [x] **CU060** (SEC/TIT) Registrar inscripción formal
 
-- [] **CU070** (SEC/TIT) Registrar examen de titulo
+- [x] **CU070** (SEC/TIT) Registrar examen de titulo
 
-- [] **CU080** (SEC/TIT) Anular actividad de titulacion
+- [x] **CU080** (SEC/TIT) Anular actividad de titulacion
 
 - [] **CU090** (SEC/TIT/ACA)Consultar actividad de titulacion vigente
 
