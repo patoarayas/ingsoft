@@ -9,8 +9,8 @@
   {{  Form::text('status',null, ['class'=>'form-control','id' =>'status','readonly' => 'true']) }}
 
   {{ Form::label('type_id','Tipo De Actividad')}}
-  {{ Form:: select('id',$types->pluck('activity_name'),$type->id-1,['class'=>'form-control','readonly'=>'true'])}}
-
+  <!-- {{ Form:: select('id',$types->pluck('activity_name'),$type->id-1,['class'=>'form-control','readonly'=>'true'])}} -->
+  {{ Form::text('id',$type->activity_name, ['placeholder'=>$type->activity_name,'class'=>'form-control','id' =>'type_id','readonly' => 'true']) }}
   {{ Form::label('semester_reg','Semestre Registro: ')}}
   {{ Form::text('semester_reg',null,['class'=>'form-control','id'=>'semester_reg','readonly' => 'true']) }}
 
